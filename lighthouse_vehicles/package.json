@@ -1,0 +1,21 @@
+{
+  "name": "lighthouse_vehicles",
+  "version": "1.0.0",
+  "description": "Lighthouse for vehicles in area",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Lighthouse",
+    "vehicles"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  }
+}
