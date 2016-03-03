@@ -28,3 +28,13 @@ app.post('/vehicles', function(req, res){
         res.send({success:true});    
     });
 });
+
+app.delete('/vehicles', function(req, res){
+    var id = req.body.id;
+    vehicles.deleteVehicle( id, function(err){
+        if(err){
+            return res.status(500).json({success:false, reason: err.message})
+        }
+        res.send({success:true});    
+    });
+});

@@ -42,7 +42,7 @@ describe('basic tests', function(){
             });
     });
     
-    it('should get a collection of vehicles with one vehicle', function(done){
+    it('should get a collection of vehicles with two vehicles', function(done){
         request(app)
             .get('/vehicles')
             .expect(200)
@@ -52,6 +52,34 @@ describe('basic tests', function(){
                 var result = res.body;
                 assert.equal( result.success, true);
                 assert.equal( Object.keys(result.vehicles).length, 2);
+                done();
+            });
+    });    
+    
+    it('should delete a collection of vehicles with one vehicle', function(done){
+        request(app)
+            .delete('/vehicles')
+            .send({id:1})
+            .expect(200)
+            .end(function(err, res){
+                if (err) return done(err);
+                
+                var result = res.body;
+                assert.equal( result.success, true);
+                done();
+            });
+    });    
+
+    it('should get a collection of vehicles with one vehicle', function(done){
+        request(app)
+            .get('/vehicles')
+            .expect(200)
+            .end(function(err, res){
+                if (err) return done(err);
+                
+                var result = res.body;
+                assert.equal( result.success, true);
+                assert.equal( Object.keys(result.vehicles).length, 1);
                 done();
             });
     });    

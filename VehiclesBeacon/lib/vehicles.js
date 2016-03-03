@@ -8,3 +8,8 @@ exports.addVehicle = function(vehicle, callback){
     vehicles[vehicle.id] = vehicle;
     callback(null);
 }
+
+exports.deleteVehicle = function(id, callback){
+    delete vehicles[id];
+    callback(null);
+}
