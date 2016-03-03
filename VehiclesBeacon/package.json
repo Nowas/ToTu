@@ -1,14 +1,14 @@
 {
-  "name": "lighthouse_vehicles",
+  "name": "vehicles_beacon",
   "version": "1.0.0",
-  "description": "Lighthouse for vehicles in area",
+  "description": "Beacon for vehicles in area",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
-    "Lighthouse",
-    "vehicles"
+    "Beacon",
+    "Vehicles"
   ],
   "author": "Patryk Nowacki",
   "license": "ISC",
