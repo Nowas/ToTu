@@ -1,0 +1,21 @@
+{
+  "name": "vehicles_beacon",
+  "version": "1.0.0",
+  "description": "Beacon for vehicles in area",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Beacon",
+    "Vehicles"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  }
+}
