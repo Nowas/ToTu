@@ -11,30 +11,17 @@ var sendReplay = function(err,resp, result){
 };
 
 app.get('/vehicles', function(req, res){
-    vehicles.getVehicles( function(err, result){
-        if(err){
-            return res.status(500).json({success:false, reason: err.message})
-        }
-        res.send({success:true, vehicles: result});    
-    })
+    res.send({success:true, vehicles: vehicles.getVehicles()});    
 });
 
 app.post('/vehicles', function(req, res){
     var vehicle = req.body;
-    vehicles.addVehicle( vehicle, function(err){
-        if(err){
-            return res.status(500).json({success:false, reason: err.message})
-        }
-        res.send({success:true});    
-    });
+    var status = vehicles.addVehicle( vehicle);
+    res.send({success:status});    
 });
 
 app.delete('/vehicles', function(req, res){
     var id = req.body.id;
-    vehicles.deleteVehicle( id, function(err){
-        if(err){
-            return res.status(500).json({success:false, reason: err.message})
-        }
-        res.send({success:true});    
-    });
+    var status = vehicles.deleteVehicle( id);
+    res.send({success:status});    
 });
