@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+}
+.body-content {
+  height: 80%;
+}
+.full-site-body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.full-body-div {
+  height: 100%;
+  width: 100%;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}

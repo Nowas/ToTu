@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+
+        <div id="map"
+                data-bus-list-url="{{ VehBeaconAddress }}"
+        </div>
+
+        <div id="loader" class="loader" style="display:none">
+        </div>
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
+        <script type="text/javascript" src="/javascripts/spin.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMapController.js"></script>
+        <script type="text/javascript" src="/javascripts/MainController.js"></script>
+    </body>
+</html>
