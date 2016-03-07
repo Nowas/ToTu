@@ -22,48 +22,38 @@ var map_style =
 ]
 
 function GoogleMapController(mapDivId, startZoom) {
-    var map;
-    function mapInit() {
-        var mapOptions = {
-            center: new google.maps.LatLng(52.25, 21),
-            panControl: false,
-            zoom: startZoom,
-            mapTypeControlOptions: {
-                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                position: google.maps.ControlPosition.TOP_CENTER
-            },
-            zoomControl: true,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.LARGE,
-                position: google.maps.ControlPosition.RIGHT_CENTER
-            },
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: false,
-            zoomControl: true,
-            styles: map_style
-        }
-        map = new google.maps.Map(document.getElementById(mapDivId),
-            mapOptions);
-        var trafficLayer = new google.maps.TrafficLayer();
-        trafficLayer.setMap(map);
-    }
+    var vehiclesController;
     
-    function init() {
-        mapInit();
+    var mapOptions = {
+        center: new google.maps.LatLng(52.25, 21),
+        panControl: false,
+        zoom: startZoom,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_CENTER
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.LARGE,
+            position: google.maps.ControlPosition.RIGHT_CENTER
+        },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: false,
+        zoomControl: true,
+        styles: map_style
     }
-    
+    var map = new google.maps.Map(document.getElementById(mapDivId),
+        mapOptions);
+    var trafficLayer = new google.maps.TrafficLayer();
 
-    function convertPositionLatLngToGoogleLatLan(lat, lng) {
-        return new google.maps.LatLng(lat, lng);
-    }
-
-    function convertPositionArrayToGoogleLatLan(position) {
-        return new google.maps.LatLng(position[1],
-                                        position[0])
-    }
+    trafficLayer.setMap(map);    
+    GoogleMapEvents(map);
+    vehiclesController = GoogleMapVehicleController(map);
     
-        
     return {
-        init: init,
+        updateVehicleOnMap:vehiclesController.updateVehicleOnMap,
+        removeVehicle:vehiclesController.removeVehicle,
+        hideVehicle:vehiclesController.hideVehicle,
+        showVehicle:vehiclesController.showVehicle
     }
 }
