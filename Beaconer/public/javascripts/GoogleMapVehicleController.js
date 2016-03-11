@@ -69,8 +69,8 @@ function GoogleMapVehicleController(map) {
     
     return {
         updateVehicleOnMap:updateVehicleOnMap,
-        removeVehicle:removeVehicle,
-        hideVehicle:hideVehicle,
-        showVehicle:showVehicle
+        removeVehicles:removeVehicles,
+        hideVehicles:hideVehicles,
+        showVehicles:showVehicles
     }
 }
