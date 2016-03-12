@@ -17,11 +17,11 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
         <script type="text/javascript" src="/javascripts/spin.js"></script>
-        <script type="text/javascript" src="/javascripts/GoogleMapTools.js"></script>
-        <script type="text/javascript" src="/javascripts/GoogleMapVehicleController.js"></script>
-        <script type="text/javascript" src="/javascripts/GoogleMapController.js"></script>
-        <script type="text/javascript" src="/javascripts/GoogleMapEvents.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapIcons.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapTools.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapController.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapEvents.js"></script>
         <script type="text/javascript" src="/javascripts/MainController.js"></script>
-        <script type="text/javascript" src="/javascripts/VehicleArrayTool.js"></script>
+        <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayAvailabilityTool.js"></script>
     </body>
 </html>

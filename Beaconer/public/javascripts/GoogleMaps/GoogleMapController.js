@@ -21,9 +21,7 @@ var map_style =
     }
 ]
 
-function GoogleMapController(mapDivId, startZoom) {
-    var vehiclesController;
-    
+function GoogleMapController(mapDivId, startZoom) {  
     var mapOptions = {
         center: new google.maps.LatLng(52.25, 21),
         panControl: false,
@@ -48,12 +46,9 @@ function GoogleMapController(mapDivId, startZoom) {
 
     trafficLayer.setMap(map);    
     GoogleMapEvents(map);
-    vehiclesController = GoogleMapVehicleController(map);
+    var vehiclesGmTools = GoogleMapTools(map);
     
     return {
-        updateVehicleOnMap:vehiclesController.updateVehicleOnMap,
-        removeVehicle:vehiclesController.removeVehicle,
-        hideVehicle:vehiclesController.hideVehicle,
-        showVehicle:vehiclesController.showVehicle
+        refreshVehicles:vehiclesGmTools.refreshMerkers,
     }
 }

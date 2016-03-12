@@ -28,16 +28,18 @@ function MainController(mapDivId) {
     var mapController = new GoogleMapController(mapDivId, 15);
     var pasangerPosition = { lat: 0, lng: 0 };
 
-
-    function init() {
-        google.maps.event.addDomListener(window, 'load', mapController.init);
-    };  
-
     function testGeolokacji() {
         return navigator.geolocation == true;
     }
 
-    init();
+    google.maps.event.addDomListener(window, 'load', function(){
+        mapController.refreshVehicles(
+            []
+            ,[]
+            ,[{ID:1, lineID:1, displayText:'12', lat:52.25, lng:21,color:'pink', size:23, visible:true},
+            {ID:2, lineID:1, displayText:'13', lat:52.25, lng:21.01,color:'red', size:23, visible:true}]
+            ,GoogleMapIcons().vehicleIcon);
+    });
 }
 
 var tmc = new MainController("map");

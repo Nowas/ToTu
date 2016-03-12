@@ -1,5 +1,5 @@
-function GoogleMapTools(){
-    function vehicleIcon(text, xSize, ySize) {
+function GoogleMapIcons(){
+    function vehicleIcon(text, color, xSize, ySize) {
         var svgVehicleTemplate =[
             '<?xml version="1.0"?>',
             '<svg width="{{ xSize }}px" height="{{ ySize }}px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">',
@@ -11,14 +11,14 @@ function GoogleMapTools(){
         if( ySize == null)
             ySize = xSize;
 
-        var svg = svgVehicleTemplate.replace('{{ color }}', 'yellow').replace('{{ text }}', text).replace('{{ xSize }}', xSize).replace('{{ ySize }}', ySize)
+        var svg = svgVehicleTemplate.replace('{{ color }}', color).replace('{{ text }}', text).replace('{{ xSize }}', xSize).replace('{{ ySize }}', ySize)
         return {
             url: 'data:image/svg+xml;charset=UTF-8;base64,' +btoa(svg),
             anchor: new google.maps.Point(xSize/2, ySize/2)
         };
-    }
-
-    function busStopIcon(kolor, xSize, ySize) {
+    };
+    
+    function busStopIcon(text, color, xSize, ySize) {
         var svgBusStopTemplate =[
             '<?xml version="1.0" encoding="UTF-8" standalone="no"?>',
             '<svg',
@@ -45,27 +45,9 @@ function GoogleMapTools(){
             url: 'data:image/svg+xml;charset=UTF-8;base64,' +btoa(svg),
             anchor: new google.maps.Point(xSize/2, ySize)
         };
-    }
-
-
-    function convertPositionLatLngToGoogleLatLan(position) {
-        return new google.maps.LatLng(position.lat, position.lng);
-    }
-
-    function convertLatLngToGoogleLatLan(lat, lng) {
-        return new google.maps.LatLng(lat, lng);
-    }
-
-    function convertPositionArrayToGoogleLatLan(position) {
-        return new google.maps.LatLng(position[1],
-                                        position[0])
-    }
-    
-    return {
+    };
+    return{
         vehicleIcon: vehicleIcon,
-        busStopIcon: busStopIcon,
-        convertPositionLatLngToGoogleLatLan:convertPositionLatLngToGoogleLatLan,
-        convertLatLngToGoogleLatLan:convertLatLngToGoogleLatLan,
-        convertPositionArrayToGoogleLatLan:convertPositionArrayToGoogleLatLan
+        busStopIcon: busStopIcon
     }
 }

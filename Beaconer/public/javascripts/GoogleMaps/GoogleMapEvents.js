@@ -24,7 +24,5 @@ function GoogleMapEvents(map){
         ev.forceRefresh = false;
         $(window).trigger(ev);
     }
-
-
     init();
 }
