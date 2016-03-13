@@ -23,5 +23,7 @@
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapEvents.js"></script>
         <script type="text/javascript" src="/javascripts/MainController.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayAvailabilityTool.js"></script>
+        <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayVisibilityTool.js"></script>
+        
     </body>
 </html>
