@@ -1,60 +1,44 @@
-var  MarkerArrayAvailabilityTool = function(){
-        var prevMarkers = [];
-        var removedMarkers = [];
-        var addedMarkers = [];
-        var modifiedMarkers = [];
-        
-        function newData(newVehicles){
-            newVehicles = newVehicles.sort(sortVehicleFn);
-            removedMarkers.splice(0,removedMarkers.length);
-            modifiedMarkers.splice(0,modifiedMarkers.length);
-            addedMarkers.splice(0,addedMarkers.length);
 
+
+var  MarkerArrayAvailabilityTool = function(){
+        
+        function sortMarkerFn(a, b){
+            return a.ID.localeCompare(b.ID);
+        }
+        
+        function run(prevMarkers, newMarkers){
+            var markers = [], marker;
+            newMarkers = newMarkers.sort(sortMarkerFn);
+            prevMarkers = prevMarkers.sort(sortMarkerFn);
             var prevIt=0, newIt=0;
 
-            while( prevIt < prevMarkers.length || newIt < newVehicles.length )
+            while( prevIt < prevMarkers.length || newIt < newMarkers.length )
             {
-                if (prevMarkers[prevIt] < newVehicles[newIt] ||
-                        newIt == newVehicles.length){
-                    removedMarkers.push(prevMarkers[prevIt]);
+                if (prevMarkers[prevIt] < newMarkers[newIt] ||
+                        newIt == newMarkers.length){
+                    marker = prevMarkers[prevIt];
+                    marker.state = -1; 
                     prevIt++;
                 }
-                else if (prevMarkers[prevIt] > newVehicles[newIt] ||
+                else if (prevMarkers[prevIt] > newMarkers[newIt] ||
                         prevIt == prevMarkers.length){ 
-                    addedMarkers.push(newVehicles[newIt]);
+                    marker = newMarkers[newIt]
+                    marker.state = 1; 
                     newIt++;
                 }
                 else
                 {
-                    modifiedMarkers.push(prevMarkers[prevIt]);
+                    marker = prevMarkers[prevIt];
+                    marker.state = 0; 
                     prevIt++;
                     newIt++;
                 }
+                markers.push(marker);
             }
-            prevMarkers = newVehicles;
+            return markers;
         }
-        
-        function sortVehicleFn(a, b){
-            return a.ID.localeCompare(b.ID);
-        }
-        
-        function getRemovedMarkers(){
-            return removedMarkers;
-        }
-
-        function getAddedMarkers(){
-            return addedMarkers;
-        }
-
-        function getModifiedMarkers(){
-            return modifiedMarkers;
-        }
-
         return {
-            newData:newData,
-            getRemovedMarkers:getRemovedMarkers,
-            getModifiedMarkers:getModifiedMarkers,
-            getAddedMarkers:getAddedMarkers
+            run: run
         }
     };
 
