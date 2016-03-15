@@ -1,8 +1,10 @@
 var  MarkerArrayVisibilityTool = function(){
 
-        function run(selecteDisplayText, markers){
+        function run(selectedDisplayText, markers){
+            if( !markers )
+                return [];
             markers.forEach(function(entry){
-                if( selecteDisplayText == null || entry.displayText == selecteDisplayText)
+                if( selectedDisplayText == null || entry.displayText == selectedDisplayText)
                     entry.visible = true;
                 else
                     entry.visible = false;

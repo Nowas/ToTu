@@ -8,9 +8,18 @@ var  MarkerArrayAvailabilityTool = function(){
         
         function run(prevMarkers, newMarkers){
             var markers = [], marker;
-            newMarkers = newMarkers.sort(sortMarkerFn);
-            prevMarkers = prevMarkers.sort(sortMarkerFn);
             var prevIt=0, newIt=0;
+
+            if( !prevMarkers )
+                prevMarkers =  [];
+            else
+                prevMarkers = prevMarkers.sort(sortMarkerFn);
+            
+            if( !newMarkers )
+                newMarkers =  [];
+            else
+                newMarkers = newMarkers.sort(sortMarkerFn);
+
 
             while( prevIt < prevMarkers.length || newIt < newMarkers.length )
             {
