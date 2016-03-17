@@ -4,7 +4,7 @@ var  MarkerArrayVisibilityTool = function(){
             if( !markers )
                 return [];
             markers.forEach(function(entry){
-                if( selectedDisplayText == null || entry.displayText == selectedDisplayText)
+                    if( selectedDisplayText == null || entry.displayText == selectedDisplayText)
                     entry.visible = true;
                 else
                     entry.visible = false;

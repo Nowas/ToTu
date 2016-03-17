@@ -23,27 +23,18 @@ var opts = {
 var target = document.getElementById('loader')
 var spinner = new Spinner(opts).spin(target);
 
+var mapConfig = { mapDivId: 'map', zoom: 15, vehUrl:'http://localhost/data/vehicles' };
 
-function MainController(mapDivId) {
-    var mapController = new GoogleMapController(mapDivId, 15);
-    var pasangerPosition = { lat: 0, lng: 0 };
-
-    function testGeolokacji() {
-        return navigator.geolocation == true;
+function MainController(config) {
+    var vehicleController = new MarkerController(config.vehUrl, 2500);
+    
+    function setNewVisibleCoords(data){
+        vehicleController.setNewVisibleCoords(data);
     }
-
-    google.maps.event.addDomListener(window, 'load', function(){
-        var markers = [{ID:'1', lineID:1, displayText:'12', lat:52.25, lng:21,color:'pink', size:23},
-            {ID:'2', lineID:1, displayText:'13', lat:52.25, lng:21.01,color:'red', size:23}];
-            
-        markers = MarkerArrayVisibilityTool().run(
-            '12'
-            ,MarkerArrayAvailabilityTool().run(
-                []
-                ,markers));
-        mapController.refreshVehicles(markers,GoogleMapIcons().vehicleIcon);
-    });
+    
+    ToTuEventReceiver('MapIdle', setNewVisibleCoords);
 }
 
-var tmc = new MainController("map");
+var tmc = new MainController(mapConfig);
+var gm = GoogleMapController(mapConfig);
 

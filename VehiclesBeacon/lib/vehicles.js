@@ -1,7 +1,11 @@
 var vehicles = {};
 
 exports.getVehicles = function(){
-    return vehicles;
+    var res = [];
+    for (var prop in vehicles) { 
+        res.push( vehicles[prop]);
+    }
+    return res;
 }
 
 exports.addVehicle = function(vehicle){

@@ -42,6 +42,8 @@ var  MarkerArrayAvailabilityTool = function(){
                     prevIt++;
                     newIt++;
                 }
+                marker.color = 'red';
+                marker.size =23;
                 markers.push(marker);
             }
             return markers;

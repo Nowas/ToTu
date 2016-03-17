@@ -2,8 +2,9 @@
 function GoogleMapTools(googleMap){
     var markersOnMap = {};
     var map = googleMap;
-
-    function refreshMerkers(markers, icon) {
+    var icons = GoogleMapIcons();
+    
+    function refreshMerkers(markers) {
         markers.forEach(function(entry) {
             switch(entry.state) {
                 case -1:
@@ -13,7 +14,7 @@ function GoogleMapTools(googleMap){
                     modifyMarker(entry);
                     break;
                 case 1:
-                    addMarker(entry,icon);
+                    addMarker(entry);
                     break;
             }
         });
@@ -22,7 +23,7 @@ function GoogleMapTools(googleMap){
     function modifyMarker(marker){
         markersOnMap[marker.ID].setMap(marker.visible ? map : null);
         markersOnMap[marker.ID].setPosition(
-            new google.maps.LatLng(marker.lat, entry.lng));
+            new google.maps.LatLng(marker.lat, marker.lng));
     }
 
     function removeMarker(marker){
@@ -35,17 +36,17 @@ function GoogleMapTools(googleMap){
             toTuID: marker.ID,
             toTuLiniaID: marker.lineID,
             toTuDisplayText: marker.displayText,
-            icon: icon(marker.displayText,marker.color,marker.size),
+            icon: icons.vehicleIcon(marker.displayText,marker.color,marker.size),
             map: marker.visible ? map : null,
             position: new google.maps.LatLng(marker.lat, marker.lng)
         });
 
         google.maps.event.addListener(markerOnMap, 'click', function () {
-            var ev = $.Event('toTuVehicleClicked');
-            ev.vehicleID = this.toTuID;
-            ev.lineID = this.toTuLineID;
-            ev.displayText = this.toTuDisplayText;
-            $(window).trigger(ev);
+            ToTuEventGenerator(
+                'MarkerClicked', 
+                {id: this.toTuID,
+                    lineID : this.toTuLineID,
+                    displayText : this.toTuDisplayText});
         });
         markersOnMap[marker.ID] = markerOnMap;
     }    

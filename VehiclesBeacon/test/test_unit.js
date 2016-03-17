@@ -3,7 +3,7 @@ var veh = require('../lib/vehicles'),
     
 describe('basic tests', function(){
     it('should get a collection of vehicles', function(done){
-        assert.equal( Object.keys(veh.getVehicles()).length, 0);
+        assert.equal( veh.getVehicles().length, 0);
         done();
     });
 
@@ -14,7 +14,7 @@ describe('basic tests', function(){
     });
     
     it('should get a collection of vehicles with two vehicles', function(done){
-        assert.equal( Object.keys(veh.getVehicles()).length, 2);
+        assert.equal( veh.getVehicles().length, 2);
         done();
     });    
     
@@ -24,7 +24,7 @@ describe('basic tests', function(){
     });    
 
     it('should get a collection of vehicles with two vehicles', function(done){
-        assert.equal( Object.keys(veh.getVehicles()).length, 1);
+        assert.equal( veh.getVehicles().length, 1);
         done();
     });    
 })

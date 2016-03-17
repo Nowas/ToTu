@@ -21,11 +21,11 @@ var map_style =
     }
 ]
 
-function GoogleMapController(mapDivId, startZoom) {  
+function GoogleMapController(config) {
     var mapOptions = {
         center: new google.maps.LatLng(52.25, 21),
         panControl: false,
-        zoom: startZoom,
+        zoom: config.zoom,
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
             position: google.maps.ControlPosition.TOP_CENTER
@@ -40,15 +40,16 @@ function GoogleMapController(mapDivId, startZoom) {
         zoomControl: true,
         styles: map_style
     }
-    var map = new google.maps.Map(document.getElementById(mapDivId),
+    
+    var map = new google.maps.Map(document.getElementById(config.mapDivId),
         mapOptions);
     var trafficLayer = new google.maps.TrafficLayer();
+    var markersMapTool = GoogleMapTools(map);
 
     trafficLayer.setMap(map);    
     GoogleMapEvents(map);
-    var vehiclesGmTools = GoogleMapTools(map);
-    
-    return {
-        refreshVehicles:vehiclesGmTools.refreshMerkers,
-    }
+        
+    ToTuEventReceiver('NewMarkersData', function (data) {
+        markersMapTool.refreshMerkers(data);
+    }); 
 }
