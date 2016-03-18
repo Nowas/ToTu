@@ -1,13 +1,15 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
+var config = [{name:'vehBeacon1', url:'http://localhost:3000/vehicles'}];
 
 /* GET home page. */
 router.get('/vehicles', function(req, res, next) {
-    // here should be logic for request for all vehiclebeacons
-var vehs =[{ID:'1', lineID:1, displayText:'12', lat:52.25, lng:21.00},
-           {ID:'2', lineID:1, displayText:'13', lat:52.25, lng:21.01}];
-
-  res.jsonp( vehs);
+    request(config[0].url, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.jsonp(JSON.parse(body).data);
+        }
+    })
 });
 
 module.exports = router;

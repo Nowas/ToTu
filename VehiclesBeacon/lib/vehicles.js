@@ -9,7 +9,7 @@ exports.getVehicles = function(){
 }
 
 exports.addVehicle = function(vehicle){
-    if( vehicle.id == null || vehicle.type == null ||
+    if( vehicle.id == null ||
         vehicle.lat == null || vehicle.lng == null)
         return false;
         

@@ -18,8 +18,10 @@ function MarkerController(dataUrl, dataRefresheInterval) {
             success: function (data) {
                 currentRequest = null;
                 copyCoordsToLastCoords(coords);
-                data = visibilityTool.run(null, availabilityTool.run(prevMerkers, data));
-                ToTuEventGenerator('NewMarkersData', data);
+                var prepMarkers = visibilityTool.run(null, availabilityTool.run(prevMerkers, data));
+                prevMerkers = data;
+                
+                ToTuEventGenerator('NewMarkersData', prepMarkers);
                 
                 if( dataRefresheInterval > 0){
                     setTimeout(

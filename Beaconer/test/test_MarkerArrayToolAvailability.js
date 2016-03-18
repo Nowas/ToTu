@@ -25,20 +25,20 @@ describe('basic availability tests', function(){
     });
 
     it('new markers should be set as added', function(done){
-        var markers = tools.run([], [{ID:'1'}, {ID:'2'}]);
+        var markers = tools.run([], [{id:'1'}, {id:'2'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isAdded).length, 2);        
         done();
     });
     it('changed markers should be set as modified', function(done){
-        var markers = tools.run([{ID:'1'}, {ID:'2'}],[{ID:'1'}, {ID:'2'}]);
+        var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}, {id:'2'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isModified).length, 2);        
         done();
     });
     
     it('not present markers should be set as removed', function(done){
-        var markers = tools.run([{ID:'1'}, {ID:'2'}],[{ID:'1'}]);
+        var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isModified).length, 1);        
         assert.equal( markers.filter(isRemoved).length, 1);        
@@ -46,7 +46,7 @@ describe('basic availability tests', function(){
     });
 
     it('shoud add one new and one modify', function(done){
-        var markers = tools.run([{ID:'1'}],[{ID:'1'},{ID:'3'}]);
+        var markers = tools.run([{id:'1'}],[{id:'1'},{id:'3'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isModified).length, 1);        
         assert.equal( markers.filter(isAdded).length, 1);        
@@ -54,7 +54,7 @@ describe('basic availability tests', function(){
     });
 
     it('empty data received shoud clear all', function(done){
-        var markers = tools.run([{ID:'1'},{ID:'3'}],[]);
+        var markers = tools.run([{id:'1'},{id:'3'}],[]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isRemoved).length, 2);        
         done();

@@ -8,7 +8,7 @@ function GoogleMapTools(googleMap){
         markers.forEach(function(entry) {
             switch(entry.state) {
                 case -1:
-                    removeMarkers(entry);
+                    removeMarker(entry);
                     break;
                 case 0:
                     modifyMarker(entry);
@@ -21,20 +21,21 @@ function GoogleMapTools(googleMap){
     }
     
     function modifyMarker(marker){
-        markersOnMap[marker.ID].setMap(marker.visible ? map : null);
-        markersOnMap[marker.ID].setPosition(
+        console.log(marker);
+        markersOnMap[marker.id].setMap(marker.visible ? map : null);
+        markersOnMap[marker.id].setPosition(
             new google.maps.LatLng(marker.lat, marker.lng));
     }
 
     function removeMarker(marker){
-        markersOnMap[marker.ID].setMap(null);
-        delete markersOnMap[marker.ID];
+        markersOnMap[marker.id].setMap(null);
+        delete markersOnMap[marker.id];
     }
     
     function addMarker(marker, icon){
         var markerOnMap = new google.maps.Marker({
-            toTuID: marker.ID,
-            toTuLiniaID: marker.lineID,
+            toTuId: marker.id,
+            toTuLiniaId: marker.lineId,
             toTuDisplayText: marker.displayText,
             icon: icons.vehicleIcon(marker.displayText,marker.color,marker.size),
             map: marker.visible ? map : null,
@@ -44,11 +45,11 @@ function GoogleMapTools(googleMap){
         google.maps.event.addListener(markerOnMap, 'click', function () {
             ToTuEventGenerator(
                 'MarkerClicked', 
-                {id: this.toTuID,
-                    lineID : this.toTuLineID,
+                {id: this.toTuId,
+                    lineId : this.toTuLineId,
                     displayText : this.toTuDisplayText});
         });
-        markersOnMap[marker.ID] = markerOnMap;
+        markersOnMap[marker.id] = markerOnMap;
     }    
     
     return {
