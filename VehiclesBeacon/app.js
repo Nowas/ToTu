@@ -1,11 +1,25 @@
-var express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    vehicles = require('./lib/vehicles');
+var bodyParser = require('body-parser'),
+    vehicles = require('./lib/vehicles'),
+    app = require('express')(),
+    server = require('http').Server(app),
+    io = require('socket.io')(server);
     
-module.exports = app;
+module.exports = server;
 
 app.use(bodyParser.json());
+
+io.on('connection', function(socket)
+{
+    console.log('Client connected.');
+
+    socket.on('disconnect', function() {
+        console.log('Client disconnected.');
+    });    
+    socket.on("getVehicles", function(data, callback) {
+        callback({success:true, data: vehicles.getVehicles()});
+    });
+    
+});
 
 var sendReplay = function(err,resp, result){
 };

@@ -6,7 +6,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/vehicles', function(req, res, next) {
     var beacons = beaconerConf.getConfig();
-    collectDataTool.getVehiclesDataFromVehicleBeacons(beacons, function(vehicles){
+    collectDataTool.getVehiclesDataFromVehicleBeaconsSocket(beacons, function(vehicles){
        res.jsonp(vehicles);
     });          
 });

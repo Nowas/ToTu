@@ -12,11 +12,10 @@ describe('basic collect data tests', function(){
     var testUrl = 'http://test.me';              
     var config = [{name:'testBeacon', url:testUrl}]                                                                                                                                                                                                                                                                                            
     
-    it('is calling beacon', function(done){
+    it('is calling beacon API', function(done){
         createSimpleNock(testUrl, {data:[{id:'1'}]});
         tools.getVehiclesDataFromVehicleBeacons(config, function(res){
             done();
         });
     });
-
 });
