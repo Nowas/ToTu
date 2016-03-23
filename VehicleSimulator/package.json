@@ -1,0 +1,21 @@
+{
+  "name": "vehiclesimulator",
+  "version": "1.0.0",
+  "description": "Simulator od mass transport vehicles for ToTu",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "ToTu",
+    "Vehicle",
+    "Simulator"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "odbc": "^1.2.1",
+    "odbc-pool": "0.0.5",
+    "socket.io-client": "^1.4.5"
+  }
+}

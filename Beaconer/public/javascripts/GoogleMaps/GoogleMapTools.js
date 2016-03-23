@@ -7,13 +7,13 @@ function GoogleMapTools(googleMap){
     function refreshMerkers(markers) {
         markers.forEach(function(entry) {
             switch(entry.state) {
-                case -1:
+                case 'removed':
                     removeMarker(entry);
                     break;
-                case 0:
+                case 'moved':
                     modifyMarker(entry);
                     break;
-                case 1:
+                case 'added':
                     addMarker(entry);
                     break;
             }
@@ -21,7 +21,6 @@ function GoogleMapTools(googleMap){
     }
     
     function modifyMarker(marker){
-        console.log(marker);
         markersOnMap[marker.id].setMap(marker.visible ? map : null);
         markersOnMap[marker.id].setPosition(
             new google.maps.LatLng(marker.lat, marker.lng));

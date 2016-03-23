@@ -18,7 +18,9 @@ io.on('connection', function(socket)
     socket.on("getVehicles", function(data, callback) {
         callback({success:true, data: vehicles.getVehicles()});
     });
-    
+    socket.on("putVehicle", function(data, callback) {
+        callback({success:vehicles.addVehicle(data)});
+    });
 });
 
 var sendReplay = function(err,resp, result){

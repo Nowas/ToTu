@@ -32,22 +32,27 @@ var  MarkerArrayAvailabilityTool = function(){
             {
                 if (newIt == newMarkers.length || compMarkerFn(prevMarkers[prevIt], newMarkers[newIt]) < 0){
                     marker = prevMarkers[prevIt];
-                    marker.state = -1; 
+                    marker.state = 'removed'; 
                     prevIt++;
                 }
                 else if (prevIt == prevMarkers.length || compMarkerFn(prevMarkers[prevIt], newMarkers[newIt]) > 0){ 
                     marker = newMarkers[newIt]
-                    marker.state = 1; 
+                    marker.state = 'added'; 
                     newIt++;
                 }
                 else
                 {
                     marker = newMarkers[newIt];
-                    marker.state = 0; 
+                    
+                    if( prevMarkers[prevIt].lat == newMarkers[newIt].lat &&
+                        prevMarkers[prevIt].lng == newMarkers[newIt].lng)
+                        marker.state = 'stoped';
+                    else
+                        marker.state = 'moved';
                     prevIt++;
                     newIt++;
                 }
-                marker.color = 'red';
+                marker.color = 'yellow';
                 marker.size =23;
                 markers.push(marker);
             }
