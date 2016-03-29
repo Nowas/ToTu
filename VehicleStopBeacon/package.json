@@ -1,0 +1,23 @@
+{
+  "name": "vehiclestopbeacon",
+  "version": "1.0.0",
+  "description": "Beacon responsible for vehicle stops",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "ToTu",
+    "VehicleStop"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "http": "0.0.0",
+    "odbc": "^1.2.1",
+    "odbc-pool": "0.0.5",
+    "socket.io": "^1.4.5"
+  }
+}
