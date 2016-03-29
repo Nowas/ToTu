@@ -2,7 +2,7 @@ var io = require('socket.io-client');
 var beaconerConf = require('./lib/configuration').getConfig()[0];
 
 var Pool = require('odbc-pool')
-    , cn = require('./dbconf.js').connStr;
+    , cn = require('./lib/dbconf.js').connStr;
 var pool = new Pool({
     min : 1
     , max : 100
