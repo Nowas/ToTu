@@ -2,7 +2,7 @@ var io = require('socket.io-client');
 var beaconerConf = require('./lib/configuration').getConfig()[0];
 
 var Pool = require('odbc-pool')
-    , cn = "DSN=ToTuDB;Uid=mzk;Pwd=MyPassword";
+    , cn = require('./dbconf.js').connStr;
 var pool = new Pool({
     min : 1
     , max : 100
