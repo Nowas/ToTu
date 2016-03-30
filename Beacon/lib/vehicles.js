@@ -1,5 +1,5 @@
 var vehicles = {};
-
+    
 exports.getVehicles = function(){
     var res = [];
     for (var prop in vehicles) { 
