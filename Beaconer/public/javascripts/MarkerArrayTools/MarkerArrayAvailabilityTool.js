@@ -52,8 +52,6 @@ var  MarkerArrayAvailabilityTool = function(){
                     prevIt++;
                     newIt++;
                 }
-                marker.color = 'yellow';
-                marker.size =23;
                 markers.push(marker);
             }
             return markers;

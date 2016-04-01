@@ -31,12 +31,12 @@ function GoogleMapTools(googleMap){
         delete markersOnMap[marker.id];
     }
     
-    function addMarker(marker, icon){
+    function addMarker(marker){
         var markerOnMap = new google.maps.Marker({
             toTuId: marker.id,
             toTuLiniaId: marker.lineId,
             toTuDisplayText: marker.displayText,
-            icon: icons.vehicleIcon(marker.displayText,marker.color,marker.size),
+            icon: icons.getIcon(marker.type,marker.displayText,marker.color,marker.size),
             map: marker.visible ? map : null,
             position: new google.maps.LatLng(marker.lat, marker.lng)
         });

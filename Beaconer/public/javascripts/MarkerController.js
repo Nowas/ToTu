@@ -1,10 +1,12 @@
-function MarkerController(dataUrl, dataRefresheInterval) {
+function MarkerController(dataUrl, dataRefresheInterval, markerType) {
     var availabilityTool = new MarkerArrayAvailabilityTool();
     var visibilityTool = new MarkerArrayVisibilityTool();
+    var setTypeTool = new MarkerArraySetTypeTool();
     var prevMerkers = [];
     var lastCoords = {};
     var browserTabActive = true;
     var currentRequest = null;
+    var selectedDisplayText = null;
 
     
     function retreiveDataFromServer(coords, force) {
@@ -18,10 +20,16 @@ function MarkerController(dataUrl, dataRefresheInterval) {
             success: function (data) {
                 currentRequest = null;
                 copyCoordsToLastCoords(coords);
-                var prepMarkers = visibilityTool.run(null, availabilityTool.run(prevMerkers, data));
-                prevMerkers = data;
-                
+                var prepMarkers = setTypeTool.run(
+                    markerType,
+                    visibilityTool.run(
+                        markerType == 'Bus' ? 'yellow' : 'purple',
+                        23,
+                        selectedDisplayText, 
+                        availabilityTool.run(prevMerkers, data)));
+
                 ToTuEventGenerator('NewMarkersData', prepMarkers);
+                prevMerkers = data;
                 
                 if( dataRefresheInterval > 0){
                     setTimeout(
@@ -69,8 +77,13 @@ function MarkerController(dataUrl, dataRefresheInterval) {
             currentRequest.abort();
     }
     
+    function SetSelectedDisplayText(text) {
+        selectedDisplayText = text;
+    }
+
     return {
         setActiveTab: setActiveTab,
-        setNewVisibleCoords:setNewVisibleCoords
+        setNewVisibleCoords:setNewVisibleCoords,
+        SetSelectedDisplayText:SetSelectedDisplayText
     }
 }

@@ -2,15 +2,15 @@ var assert = require("assert");
 var tools = require("../public/javascripts/MarkerArrayTools/MarkerArrayAvailabilityTool.js")();
 
 function isRemoved(item){
-    return (item.state == -1)
+    return (item.state == 'removed')
 }
 
-function isModified(item){
-    return (item.state == 0)
+function isStoped(item){
+    return (item.state == 'stoped')
 }
 
 function isAdded(item){
-    return (item.state == 1)
+    return (item.state == 'added')
 }
 
 describe('basic availability tests', function(){
@@ -26,21 +26,21 @@ describe('basic availability tests', function(){
 
     it('new markers should be set as added', function(done){
         var markers = tools.run([], [{id:'1'}, {id:'2'}]);
-        assert.equal( markers.length, 2);        
+        assert.equal( markers.length, 2);
         assert.equal( markers.filter(isAdded).length, 2);        
         done();
     });
-    it('changed markers should be set as modified', function(done){
+    it('changed markers should be set as stoped', function(done){
         var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}, {id:'2'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isModified).length, 2);        
+        assert.equal( markers.filter(isStoped).length, 2);        
         done();
     });
     
     it('not present markers should be set as removed', function(done){
         var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isModified).length, 1);        
+        assert.equal( markers.filter(isStoped).length, 1);        
         assert.equal( markers.filter(isRemoved).length, 1);        
         done();
     });
@@ -48,7 +48,7 @@ describe('basic availability tests', function(){
     it('shoud add one new and one modify', function(done){
         var markers = tools.run([{id:'1'}],[{id:'1'},{id:'3'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isModified).length, 1);        
+        assert.equal( markers.filter(isStoped).length, 1);        
         assert.equal( markers.filter(isAdded).length, 1);        
         done();
     });

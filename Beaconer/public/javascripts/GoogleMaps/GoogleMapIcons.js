@@ -1,5 +1,13 @@
 function GoogleMapIcons(){
-    function vehicleIcon(text, color, xSize, ySize) {
+    
+    function getIcon(type, text, color, xSize, ySize){
+        if( type == 'Bus')
+            return vehicleIcon(text, color, xSize, ySize) 
+        if( type == 'Stop')
+            return busStopIcon(text, color, xSize, ySize) 
+    }
+    
+    function vehicleIcon(text, color, xSize, ySize){
         var svgVehicleTemplate =[
             '<?xml version="1.0"?>',
             '<svg width="{{ xSize }}px" height="{{ ySize }}px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">',
@@ -40,14 +48,13 @@ function GoogleMapIcons(){
         if( ySize == null)
             ySize = xSize;
 
-        var svg = svgBusStopTemplate.replace('{{ color }}', kolor).replace('{{ xSize }}', xSize).replace('{{ ySize }}', ySize);;
+        var svg = svgBusStopTemplate.replace('{{ color }}', color).replace('{{ xSize }}', xSize).replace('{{ ySize }}', ySize);
         return {
             url: 'data:image/svg+xml;charset=UTF-8;base64,' +btoa(svg),
             anchor: new google.maps.Point(xSize/2, ySize)
         };
     };
     return{
-        vehicleIcon: vehicleIcon,
-        busStopIcon: busStopIcon
+        getIcon: getIcon
     }
 }

@@ -14,7 +14,7 @@ describe('basic collect data tests', function(){
     
     it('is calling beacon API', function(done){
         createSimpleNock(testUrl, {data:[{id:'1'}]});
-        tools.getVehiclesDataFromVehicleBeacons(config, function(res){
+        tools.getVehiclesDataFromBeacons(config, function(res){
             done();
         });
     });

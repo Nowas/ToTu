@@ -33,7 +33,7 @@ function ReadDataFromDB(fromLng, fromLat, toLng, toLat) {
             if (!err)
             {
                 var res = data.map(function(entry){
-                    return   {"id": entry.ID ,
+                    return   {"id": entry.ID.toString() ,
                                 "lat":entry.LAT,
                                 "lng":entry.LNG}; 
                 });

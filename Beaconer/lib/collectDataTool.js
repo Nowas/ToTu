@@ -2,7 +2,7 @@ var request = require('request');
 var io = require('socket.io-client');
   
   var DataTool = function(){
-    function getVehiclesDataFromVehicleBeacons(beaconList, callback){
+    function getVehiclesDataFromBeacons(beaconList, callback){
         var responses = [];
         var completed_request = 0;
         beaconList.forEach(function(beacon){
@@ -18,7 +18,7 @@ var io = require('socket.io-client');
             })
         });
     };
-    function getVehiclesDataFromVehicleBeaconsSocket(beaconList, callback){
+    function getVehiclesDataFromBeaconsSocket(beaconList, callback){
         var responses = [];
         var completed_request = 0;
         beaconList.forEach(function(beacon){
@@ -33,9 +33,25 @@ var io = require('socket.io-client');
             });
         });
     };
+    function getVehicleStopsDataFromBeaconsSocket(beaconList, callback){
+        var responses = [];
+        var completed_request = 0;
+        beaconList.forEach(function(beacon){
+            var socket = io.connect(beacon.url, {reconnect: true});
+            
+            socket.on('connect', function(socket) {
+                console.log('Connected!');
+            });
+            socket.emit("getVehicleStops",null, function(res){
+                socket.disconnect();
+                callback(res.data);
+            });
+        });
+    };
     return {
-        getVehiclesDataFromVehicleBeacons:getVehiclesDataFromVehicleBeacons,
-        getVehiclesDataFromVehicleBeaconsSocket:getVehiclesDataFromVehicleBeaconsSocket
+        getVehiclesDataFromBeacons:getVehiclesDataFromBeacons,
+        getVehiclesDataFromBeaconsSocket:getVehiclesDataFromBeaconsSocket,
+        getVehicleStopsDataFromBeaconsSocket:getVehicleStopsDataFromBeaconsSocket
     }
 };
 

@@ -6,8 +6,15 @@ var router = express.Router();
 /* GET home page. */
 router.get('/vehicles', function(req, res, next) {
     var beacons = beaconerConf.getConfig();
-    collectDataTool.getVehiclesDataFromVehicleBeaconsSocket(beacons, function(vehicles){
+    collectDataTool.getVehiclesDataFromBeaconsSocket(beacons, function(vehicles){
        res.jsonp(vehicles);
+    });          
+});
+
+router.get('/vehicleStops', function(req, res, next) {
+    var beacons = beaconerConf.getConfig();
+    collectDataTool.getVehicleStopsDataFromBeaconsSocket(beacons, function(vehicleStops){
+       res.jsonp(vehicleStops);
     });          
 });
 

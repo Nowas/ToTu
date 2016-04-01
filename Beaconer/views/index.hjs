@@ -15,11 +15,12 @@
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-s        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
         <script type="text/javascript" src="/javascripts/spin.js"></script>
         <script type="text/javascript" src="/javascripts/EventGenerator.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayAvailabilityTool.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayVisibilityTool.js"></script>
+        <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArraySetTypeTool.js"></script>
 
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapIcons.js"></script>
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapTools.js"></script>

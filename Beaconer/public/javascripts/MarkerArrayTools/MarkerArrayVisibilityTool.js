@@ -1,6 +1,6 @@
 var  MarkerArrayVisibilityTool = function(){
 
-        function run(selectedDisplayText, markers){
+        function run(color, size, selectedDisplayText, markers){
             if( !markers )
                 return [];
             markers.forEach(function(entry){
@@ -8,6 +8,8 @@ var  MarkerArrayVisibilityTool = function(){
                     entry.visible = true;
                 else
                     entry.visible = false;
+                entry.color = color;
+                entry.size = size;
             });
             return markers;
         }

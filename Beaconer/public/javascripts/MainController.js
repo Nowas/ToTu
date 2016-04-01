@@ -23,13 +23,27 @@ var opts = {
 var target = document.getElementById('loader')
 var spinner = new Spinner(opts).spin(target);
 
-var mapConfig = { mapDivId: 'map', zoom: 15, vehUrl:'http://localhost/data/vehicles' };
+var mapConfig = { 
+    mapDivId: 'map', 
+    zoom: 15, 
+    vehUrl:'http://localhost/data/vehicles',
+    vehStopUrl:'http://localhost/data/vehicleStops' };
 
 function MainController(config) {
-    var vehicleController = new MarkerController(config.vehUrl, 2500);
+    var availabilityTool = new MarkerArrayAvailabilityTool();
+    var visibilityTool = new MarkerArrayVisibilityTool();
+    var setTypeTool = new MarkerArraySetTypeTool();
+ 
+    var vehicleController = new MarkerController(config.vehUrl, 1 * 1000, 'Bus');
+    var vehicleStopController = new MarkerController(config.vehStopUrl, 60 * 1000, 'Stop');
     
     function setNewVisibleCoords(data){
         vehicleController.setNewVisibleCoords(data);
+        if(data.zoom < 10)
+            vehicleStopController.SetSelectedDisplayText(123);
+        else
+            vehicleStopController.SetSelectedDisplayText(null);
+        vehicleStopController.setNewVisibleCoords(data);      
     }
     
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
