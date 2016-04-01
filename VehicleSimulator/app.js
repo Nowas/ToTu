@@ -25,7 +25,7 @@ function sendPositionToBeacon(vehData){
 };
 
 
-function ReadDataFromSimulateDataDB() {
+function ReadDataFromSimulateDataDB(spreadDelaySec) {
     pool.open(cn, function (err, db) {
         if (err) {
             return console.log('e1' + err);
@@ -43,20 +43,20 @@ function ReadDataFromSimulateDataDB() {
                         "lat":entry.SZEROKOSC,
                         "lng":entry.DLUGOSC}); 
                 }, 
-                Math.random() * 10000);
+                Math.random() * spreadDelaySec * 000);
             });
             db.close();
         });
     });
 };
 
-function loop() {
-    ReadDataFromSimulateDataDB();
+function loop(spreadDelaySec) {
+    ReadDataFromSimulateDataDB(spreadDelaySec);
     setTimeout(function () {
-        loop();
-    }, 10000);
+        loop(10000);
+    }, spreadDelaySec * 1000);
 }
 
-loop()
+loop(1000)
 
 
