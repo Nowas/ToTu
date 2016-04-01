@@ -7,7 +7,7 @@ var db = require('odbc')()
 var socket = io.connect(beaconerConf.url, {reconnect: true});
 
 socket.on('connect', function(socket) {
-    console.log('Connected!');
+    ReadDataFromDB(-180,-90,180,90);
 });
 
 
@@ -19,21 +19,19 @@ function sendPositionToBeacon(vehStopData){
 
 
 function ReadDataFromDB(fromLng, fromLat, toLng, toLat) {
-    var param = [ fromLng, toLng, fromLat, toLat];
-    
+    var param = [ fromLng.toString(), toLng.toString(), fromLat.toString(), toLat.toString()];
     db.open(cn, function (err) {
         if (err) return console.log('e1' + err);
         db.query('SELECT PST_ID as ID,'+
             ' PST_WSP_X as LNG, PST_WSP_Y as LAT' +
-                ' FROM VIEW_PRZYSTANKI' //+ 
-            // ' WHERE PST_WSP_X >= ?'+
-            // ' and PST_WSP_X <= ?'+
-            // ' AND PST_WSP_Y >= ?'+
-            // ' AND PST_WSP_Y <= ?' , [ 0, 10, 0, 10]
+            ' FROM VIEW_PRZYSTANKI' + 
+            ' WHERE PST_WSP_X >= ?'+
+            ' and PST_WSP_X <= ?'+
+            ' AND PST_WSP_Y >= ?'+
+            ' AND PST_WSP_Y <= ?' , param
             , function (err, data) {
             if (!err)
             {
-                console.log('New data');
                 var res = data.map(function(entry){
                     return   {"id": entry.ID ,
                                 "lat":entry.LAT,
@@ -41,12 +39,14 @@ function ReadDataFromDB(fromLng, fromLat, toLng, toLat) {
                 });
                 sendPositionToBeacon(res)
             }
+            else
+                console.log(err);
             db.close();
             return;
         });
     });
 }
 
-ReadDataFromDB(-180,-90,180,90);
+
 
 

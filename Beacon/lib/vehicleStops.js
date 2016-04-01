@@ -18,7 +18,7 @@ exports.addVehicleStop = function(vehicleStop){
 }
 
 exports.addVehicleStops = function(vehicleStopsInput){
-    console.log(vehicleStopsInput);
+    vehicleStops = {};
     vehicleStopsInput.forEach(function(entry) {
         exports.addVehicleStop(entry);
     });
