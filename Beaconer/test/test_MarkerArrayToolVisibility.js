@@ -11,18 +11,18 @@ function isHidden(item){
 
 describe('basic visibility tests', function(){
     it('empty data on empty input', function(done){
-        assert.equal( tools.run(null, null, null, null).length, 0);        
+        assert.equal( tools.vehicle(null, null, null, null).length, 0);        
         done();
     });
 
     it('markers should be visible when no SelectedDisplayText is not selected', function(done){
-        var markers = tools.run(null, null, null, [{ID:'1'},{ID:'2'}]);
+        var markers = tools.vehicle(null, null, null, [{ID:'1'},{ID:'2'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isVisible).length, 2);        
         done();
     });
     it('markers without displayText should be hidden if selectedDisplaytext is selected', function(done){
-        var markers = tools.run(null, null, "selText", [{ID:'1'},{ID:'2'}]);
+        var markers = tools.vehicle(null, null, "selText", [{ID:'1'},{ID:'2'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isVisible).length, 0);        
         assert.equal( markers.filter(isHidden).length, 2);        
@@ -30,7 +30,7 @@ describe('basic visibility tests', function(){
     });
     
     it('markers with different displayText from selectedDisplaytext should be hidden', function(done){
-        var markers = tools.run(null, null, "SelText", [{ID:'1', displayText:'test1'},{ID:'2', displayText:'SelText'}]);
+        var markers = tools.vehicle(null, null, "SelText", [{ID:'1', displayText:'test1'},{ID:'2', displayText:'SelText'}]);
         assert.equal( markers.length, 2);        
         assert.equal( markers.filter(isVisible).length, 1);        
         assert.equal( markers.filter(isHidden).length, 1);        
@@ -38,7 +38,7 @@ describe('basic visibility tests', function(){
     });
 
     it('markers with different displayText from selectedDisplaytext should be hidden (multi version)', function(done){
-        var markers = tools.run(null, null, "SelText", [
+        var markers = tools.vehicle(null, null, "SelText", [
             {ID:'1', displayText:'test1'},
             {ID:'2', displayText:'SelText'},
             {ID:'3', displayText:'test2'},

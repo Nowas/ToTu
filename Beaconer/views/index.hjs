@@ -18,6 +18,8 @@
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
         <script type="text/javascript" src="/javascripts/spin.js"></script>
         <script type="text/javascript" src="/javascripts/EventGenerator.js"></script>
+        
+        <script type="text/javascript" src="/javascripts/MarkerArrayTools/SimplePropSettings.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayAvailabilityTool.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArrayVisibilityTool.js"></script>
         <script type="text/javascript" src="/javascripts/MarkerArrayTools/MarkerArraySetTypeTool.js"></script>

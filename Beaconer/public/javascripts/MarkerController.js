@@ -18,15 +18,25 @@ function MarkerController(dataUrl, dataRefresheInterval, markerType) {
             dataType: "jsonp",
             data: { coords },
             success: function (data) {
+                var prepMarkers;
                 currentRequest = null;
                 copyCoordsToLastCoords(coords);
-                var prepMarkers = setTypeTool.run(
-                    markerType,
-                    visibilityTool.run(
-                        markerType == 'Bus' ? 'yellow' : 'purple',
-                        23,
-                        selectedDisplayText, 
-                        availabilityTool.run(prevMerkers, data)));
+
+                if( markerType == 'Vehicle')
+                    prepMarkers = setTypeTool.run(
+                        markerType,
+                        visibilityTool.vehicle(
+                            'yellow',
+                            23,
+                            selectedDisplayText, 
+                            availabilityTool.run(prevMerkers, data)));
+                else
+                    prepMarkers = setTypeTool.run(
+                        markerType,
+                        visibilityTool.vehicleStop(
+                            'purple',
+                            23,
+                            availabilityTool.run(prevMerkers, data)));
 
                 ToTuEventGenerator('NewMarkersData', prepMarkers);
                 prevMerkers = data;
@@ -79,6 +89,7 @@ function MarkerController(dataUrl, dataRefresheInterval, markerType) {
     
     function SetSelectedDisplayText(text) {
         selectedDisplayText = text;
+        retreiveDataFromServer(lastCoords, false);
     }
 
     return {

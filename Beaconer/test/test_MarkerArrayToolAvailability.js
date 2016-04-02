@@ -5,8 +5,8 @@ function isRemoved(item){
     return (item.state == 'removed')
 }
 
-function isStoped(item){
-    return (item.state == 'stoped')
+function isStopped(item){
+    return (item.state == 'stopped')
 }
 
 function isAdded(item){
@@ -30,17 +30,17 @@ describe('basic availability tests', function(){
         assert.equal( markers.filter(isAdded).length, 2);        
         done();
     });
-    it('changed markers should be set as stoped', function(done){
+    it('changed markers should be set as stopped', function(done){
         var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}, {id:'2'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isStoped).length, 2);        
+        assert.equal( markers.filter(isStopped).length, 2);        
         done();
     });
     
     it('not present markers should be set as removed', function(done){
         var markers = tools.run([{id:'1'}, {id:'2'}],[{id:'1'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isStoped).length, 1);        
+        assert.equal( markers.filter(isStopped).length, 1);        
         assert.equal( markers.filter(isRemoved).length, 1);        
         done();
     });
@@ -48,7 +48,7 @@ describe('basic availability tests', function(){
     it('shoud add one new and one modify', function(done){
         var markers = tools.run([{id:'1'}],[{id:'1'},{id:'3'}]);
         assert.equal( markers.length, 2);        
-        assert.equal( markers.filter(isStoped).length, 1);        
+        assert.equal( markers.filter(isStopped).length, 1);        
         assert.equal( markers.filter(isAdded).length, 1);        
         done();
     });

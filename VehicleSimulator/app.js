@@ -43,7 +43,7 @@ function ReadDataFromSimulateDataDB(spreadDelaySec) {
                         "lat":entry.SZEROKOSC,
                         "lng":entry.DLUGOSC}); 
                 }, 
-                Math.random() * spreadDelaySec * 000);
+                Math.random() * spreadDelaySec * 1000);
             });
             db.close();
         });
@@ -53,10 +53,10 @@ function ReadDataFromSimulateDataDB(spreadDelaySec) {
 function loop(spreadDelaySec) {
     ReadDataFromSimulateDataDB(spreadDelaySec);
     setTimeout(function () {
-        loop(10000);
+        loop(10);
     }, spreadDelaySec * 1000);
 }
 
-loop(1000)
+loop(1)
 
 

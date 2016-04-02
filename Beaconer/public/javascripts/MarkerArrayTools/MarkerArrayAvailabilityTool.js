@@ -46,7 +46,7 @@ var  MarkerArrayAvailabilityTool = function(){
                     
                     if( prevMarkers[prevIt].lat == newMarkers[newIt].lat &&
                         prevMarkers[prevIt].lng == newMarkers[newIt].lng)
-                        marker.state = 'stoped';
+                        marker.state = 'stopped';
                     else
                         marker.state = 'moved';
                     prevIt++;

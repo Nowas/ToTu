@@ -30,23 +30,25 @@ var mapConfig = {
     vehStopUrl:'http://localhost/data/vehicleStops' };
 
 function MainController(config) {
-    var availabilityTool = new MarkerArrayAvailabilityTool();
-    var visibilityTool = new MarkerArrayVisibilityTool();
-    var setTypeTool = new MarkerArraySetTypeTool();
- 
-    var vehicleController = new MarkerController(config.vehUrl, 1 * 1000, 'Bus');
-    var vehicleStopController = new MarkerController(config.vehStopUrl, 60 * 1000, 'Stop');
+    var vehicleController = new MarkerController(config.vehUrl, 1 * 1000, 'Vehicle');
+    var vehicleStopController = new MarkerController(config.vehStopUrl, 60 * 1000, 'VehicleStop');
     
     function setNewVisibleCoords(data){
         vehicleController.setNewVisibleCoords(data);
-        if(data.zoom < 10)
-            vehicleStopController.SetSelectedDisplayText(123);
-        else
-            vehicleStopController.SetSelectedDisplayText(null);
+        // if(data.zoom < 10)
+        //     vehicleStopController.SetSelectedDisplayText(123);
+        // else
+        //     vehicleStopController.SetSelectedDisplayText(null);
         vehicleStopController.setNewVisibleCoords(data);      
     }
     
+    function markerCliecked(data){
+        vehicleController.SetSelectedDisplayText(data.displayText);
+    }
+        
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
+    ToTuEventReceiver('MarkerClicked', markerCliecked);
+    
 }
 
 var tmc = new MainController(mapConfig);

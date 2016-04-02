@@ -1,24 +1,47 @@
-var  MarkerArrayVisibilityTool = function(){
+if (typeof module !== "undefined" && module.exports) {
+    var SimplePropSettings = require('./SimplePropSettings');
+}
 
-        function run(color, size, selectedDisplayText, markers){
+var  MarkerArrayVisibilityTool = function(){
+        var sps = new SimplePropSettings(); 
+        function vehicle(color, size, selectedDisplayText, markers){
             if( !markers )
                 return [];
             markers.forEach(function(entry){
-                    if( selectedDisplayText == null || entry.displayText == selectedDisplayText)
-                    entry.visible = true;
-                else
-                    entry.visible = false;
-                entry.color = color;
-                entry.size = size;
+                entry = sps.vehicleVisibility(
+                            selectedDisplayText,
+                            sps.colorAndSize(
+                                color,
+                                size,
+                                sps.type(
+                                    'Vehicle',
+                                    entry))); 
             });
             return markers;
         }
         
+        function vehicleStop(color, size, markers){
+            if( !markers )
+                return [];
+            markers.forEach(function(entry){
+                entry = sps.visibility(
+                            true,
+                            sps.colorAndSize(
+                                color,
+                                size,
+                                sps.type(
+                                    'VehicleStop',
+                                    entry))); 
+            });
+            return markers;
+        }
+
         return {
-            run:run,
+            vehicle:vehicle,
+            vehicleStop:vehicleStop,
         }
     };
-
+        
 if (typeof module !== "undefined" && module.exports) {
     module.exports = MarkerArrayVisibilityTool;
 }
