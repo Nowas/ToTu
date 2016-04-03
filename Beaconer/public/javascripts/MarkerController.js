@@ -1,13 +1,9 @@
-function MarkerController(dataUrl, dataRefresheInterval, markerType) {
-    var availabilityTool = new MarkerArrayAvailabilityTool();
-    var visibilityTool = new MarkerArrayVisibilityTool();
-    var setTypeTool = new MarkerArraySetTypeTool();
+function MarkerController(dataUrl, dataRefresheInterval, newDataCallback, callbackInitParams) {
     var prevMerkers = [];
     var lastCoords = {};
     var browserTabActive = true;
     var currentRequest = null;
-    var selectedDisplayText = null;
-
+    var callbackParams = callbackInitParams;
     
     function retreiveDataFromServer(coords, force) {
         if( !shouldScheduleQueryForNewData(coords, force))
@@ -17,30 +13,11 @@ function MarkerController(dataUrl, dataRefresheInterval, markerType) {
             url: dataUrl,
             dataType: "jsonp",
             data: { coords },
-            success: function (data) {
-                var prepMarkers;
+            success: function (newMarkers) {
                 currentRequest = null;
                 copyCoordsToLastCoords(coords);
-
-                if( markerType == 'Vehicle')
-                    prepMarkers = setTypeTool.run(
-                        markerType,
-                        visibilityTool.vehicle(
-                            'yellow',
-                            23,
-                            selectedDisplayText, 
-                            availabilityTool.run(prevMerkers, data)));
-                else
-                    prepMarkers = setTypeTool.run(
-                        markerType,
-                        visibilityTool.vehicleStop(
-                            'purple',
-                            23,
-                            availabilityTool.run(prevMerkers, data)));
-
-                ToTuEventGenerator('NewMarkersData', prepMarkers);
-                prevMerkers = data;
-                
+                newDataCallback(prevMerkers, newMarkers, callbackParams);
+                prevMerkers = newMarkers;
                 if( dataRefresheInterval > 0){
                     setTimeout(
                         function () {
@@ -87,14 +64,14 @@ function MarkerController(dataUrl, dataRefresheInterval, markerType) {
             currentRequest.abort();
     }
     
-    function SetSelectedDisplayText(text) {
-        selectedDisplayText = text;
-        retreiveDataFromServer(lastCoords, false);
+    function setCallbackParams(newParams) {
+        callbackParams = newParams;
+        newDataCallback(prevMerkers, prevMerkers, callbackParams);
     }
 
     return {
         setActiveTab: setActiveTab,
         setNewVisibleCoords:setNewVisibleCoords,
-        SetSelectedDisplayText:SetSelectedDisplayText
+        setCallbackParams:setCallbackParams,
     }
 }

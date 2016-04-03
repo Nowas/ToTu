@@ -30,8 +30,8 @@ var mapConfig = {
     vehStopUrl:'http://localhost/data/vehicleStops' };
 
 function MainController(config) {
-    var vehicleController = new MarkerController(config.vehUrl, 1 * 1000, 'Vehicle');
-    var vehicleStopController = new MarkerController(config.vehStopUrl, 60 * 1000, 'VehicleStop');
+    var vehicleController = new VehicleMarkerController(config.vehUrl, 1 * 1000);
+    var vehicleStopController = new VehicleStopMarkerController(config.vehStopUrl, 60 * 1000);
     
     function setNewVisibleCoords(data){
         vehicleController.setNewVisibleCoords(data);
@@ -43,7 +43,7 @@ function MainController(config) {
     }
     
     function markerCliecked(data){
-        vehicleController.SetSelectedDisplayText(data.displayText);
+        vehicleController.setSelectedDisplayText(data.displayText);
     }
         
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
