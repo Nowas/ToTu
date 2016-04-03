@@ -22,5 +22,15 @@ function GoogleMapEvents(map){
     google.maps.event.addListener(map, 'idle', function () {
         visibleRegionChangedEvent();
     });
+    
+    
+    google.maps.event.addListener(map, 'click', function (event) {
+        ToTuEventGenerator(
+            'MapClicked',
+            null
+        ); 
+    });
+
+
 
 }

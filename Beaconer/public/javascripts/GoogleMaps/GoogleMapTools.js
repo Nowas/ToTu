@@ -13,6 +13,9 @@ function GoogleMapTools(googleMap){
                 case 'moved':
                     modifyMarker(entry);
                     break;
+                case 'stopped':
+                    stopMarker(entry);
+                    break;
                 case 'added':
                     addMarker(entry);
                     break;
@@ -20,6 +23,19 @@ function GoogleMapTools(googleMap){
         });
     }
     
+    function markerVisibibilityChanged(marker)
+    {
+        if((markersOnMap[marker.id].map && !marker.visible) || 
+            (!markersOnMap[marker.id].map && marker.visible))
+           return true; 
+        return false;
+    }
+    
+    function stopMarker(marker){
+        if( markerVisibibilityChanged(marker) )
+            markersOnMap[marker.id].setMap(marker.visible ? map : null);
+    }
+
     function modifyMarker(marker){
         markersOnMap[marker.id].setMap(marker.visible ? map : null);
         markersOnMap[marker.id].setPosition(

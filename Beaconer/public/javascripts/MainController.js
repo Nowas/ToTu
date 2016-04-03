@@ -42,12 +42,18 @@ function MainController(config) {
         vehicleStopController.setNewVisibleCoords(data);      
     }
     
-    function markerCliecked(data){
+    function markerClicked(data){
         vehicleController.setSelectedDisplayText(data.displayText);
     }
         
+    function mapClicked(data){
+        vehicleController.setSelectedDisplayText(null);
+    }
+
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
-    ToTuEventReceiver('MarkerClicked', markerCliecked);
+    ToTuEventReceiver('MarkerClicked', markerClicked);
+    ToTuEventReceiver('MapClicked', mapClicked);
+    
     
 }
 
