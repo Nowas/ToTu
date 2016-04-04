@@ -1,7 +1,5 @@
 function VehicleStopMarkerController(dataUrl, dataRefresheInterval) {
-    var availabilityTool = new MarkerArrayAvailabilityTool();
-    var visibilityTool = new MarkerArrayVisibilityTool();
-    var setTypeTool = new MarkerArraySetTypeTool();
+    var propTool = new MarkerArrayTool();
     var params = {markerType:'VehicleStop'};
     var markerController = new MarkerController(
         dataUrl, 
@@ -11,12 +9,15 @@ function VehicleStopMarkerController(dataUrl, dataRefresheInterval) {
 
     function prepareVehicleStopMarkers(prevMarkers, newMarkers, params )
     {
-        var prepMarkers = setTypeTool.run(
-                params.markerType,
-                visibilityTool.vehicleStop(
-                    'purple',
-                    23,
-                    availabilityTool.run(prevMarkers, newMarkers)));
+        var prepMarkers = propTool
+            .withNewData(newMarkers)
+            .withColor('purple')
+            .withSize(23)
+            .withVisibility(true)
+            .withType(params.markerType)
+            .withAvailability(prevMarkers)
+            .build();
+            
         ToTuEventGenerator('NewMarkersData', prepMarkers);
     }
     return{

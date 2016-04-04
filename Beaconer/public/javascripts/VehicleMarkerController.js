@@ -1,7 +1,5 @@
 function VehicleMarkerController(dataUrl, dataRefresheInterval) {
-    var availabilityTool = new MarkerArrayAvailabilityTool();
-    var visibilityTool = new MarkerArrayVisibilityTool();
-    var setTypeTool = new MarkerArraySetTypeTool();
+    var propTool = new MarkerArrayTool();
     var params = {markerType:'Vehicle', selectedDisplayText:null};
     var markerController = new MarkerController(
         dataUrl, 
@@ -11,16 +9,16 @@ function VehicleMarkerController(dataUrl, dataRefresheInterval) {
 
     function prepareVehicleMarkers(prevMarkers, newMarkers, params)
     {
-        var availabilityTool = new MarkerArrayAvailabilityTool();
-        var visibilityTool = new MarkerArrayVisibilityTool();
-        var setTypeTool = new MarkerArraySetTypeTool();
-        var prepMarkers = setTypeTool.run(
-                params.markerType,
-                visibilityTool.vehicle(
-                    'yellow',
-                    23,
-                    params.selectedDisplayText, 
-                    availabilityTool.run(prevMarkers, newMarkers)));
+        var prepMarkers = propTool
+            .withNewData(newMarkers)
+            .withColor('yellow')
+            .withSize(23)
+            .withSelectedDataText(params.selectedDisplayText)
+            .withType(params.markerType)
+            .withAvailability(prevMarkers)
+            .withVisibility(true)
+            .build();
+            
         ToTuEventGenerator('NewMarkersData', prepMarkers);
     }
     
