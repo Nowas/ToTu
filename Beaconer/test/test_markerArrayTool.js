@@ -9,19 +9,19 @@ describe('basic array availability tools tests', function(){
 
 
     it('empty data on init', function(done){
-        var markers = builder.withNewData([]).availability([]).build();
+        var markers = builder.withNewData([]).withAvailability([]).build();
         assert.equal( markers.length, 0);        
         done();
     });
 
     it('null data test ', function(done){
-        var markers = builder.withNewData(null).availability(null).build();
+        var markers = builder.withNewData(null).withAvailability(null).build();
         assert.equal( markers.length, 0);        
         done();
     });
 
     it('new markers should be set as added', function(done){
-        var markers = builder.withNewData([{id:'1'}, {id:'2'}]).availability([]).build();
+        var markers = builder.withNewData([{id:'1'}, {id:'2'}]).withAvailability([]).build();
         assert.equal( markers.length, 2);
         assert.equal( markers.filter(isAdded).length, 2);        
         done();
