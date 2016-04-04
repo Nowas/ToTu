@@ -17,6 +17,10 @@ function GoogleMapEvents(map){
         if (map.getZoom() > 17) {
             map.setZoom(17);  // where for me: nn=17
         };
+        ToTuEventGenerator(
+            'ZoomChanged',
+            {zoom: map.getZoom()}
+        ); 
     });
 
     google.maps.event.addListener(map, 'idle', function () {

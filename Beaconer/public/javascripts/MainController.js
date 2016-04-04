@@ -50,9 +50,15 @@ function MainController(config) {
         vehicleController.setSelectedDisplayText(null);
     }
 
+    function zoomChanged(data){
+        vehicleStopController.zoomChanged(data.zoom);
+    }
+
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
     ToTuEventReceiver('MarkerClicked', markerClicked);
     ToTuEventReceiver('MapClicked', mapClicked);
+    ToTuEventReceiver('ZoomChanged', zoomChanged);
+    
     
     
 }
