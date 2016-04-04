@@ -58,9 +58,6 @@ function MainController(config) {
     ToTuEventReceiver('MarkerClicked', markerClicked);
     ToTuEventReceiver('MapClicked', mapClicked);
     ToTuEventReceiver('ZoomChanged', zoomChanged);
-    
-    
-    
 }
 
 var tmc = new MainController(mapConfig);
