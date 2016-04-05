@@ -22,13 +22,15 @@
         <script type="text/javascript" src="/javascripts/MarkerArrayTool.js"></script>
 
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapIcons.js"></script>
-        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapTools.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapMarkerTool.js"></script>
+        <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapPolylineTool.js"></script>
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapController.js"></script>
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapEvents.js"></script>
         
         <script type="text/javascript" src="/javascripts/MarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/VehicleMarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/VehicleStopMarkerController.js"></script>        
+        <script type="text/javascript" src="/javascripts/RetreiveDataFromServer.js"></script>
         <script type="text/javascript" src="/javascripts/MainController.js"></script>
     </body>
 </html>

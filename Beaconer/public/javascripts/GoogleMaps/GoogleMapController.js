@@ -44,12 +44,17 @@ function GoogleMapController(config) {
     var map = new google.maps.Map(document.getElementById(config.mapDivId),
         mapOptions);
     var trafficLayer = new google.maps.TrafficLayer();
-    var markersMapTool = GoogleMapTools(map);
+    var markersMapTool = GoogleMapMarkerTool(map);
+    var polylineMapTool = GoogleMapPolylineTool(map);
 
     trafficLayer.setMap(map);    
     GoogleMapEvents(map);
         
     ToTuEventReceiver('NewMarkersData', function (data) {
         markersMapTool.refreshMerkers(data);
+    }); 
+
+    ToTuEventReceiver('DrawVehicleRoute', function (data) {
+        polylineMapTool.draw(data);
     }); 
 }

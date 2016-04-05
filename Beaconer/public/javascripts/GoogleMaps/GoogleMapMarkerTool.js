@@ -1,5 +1,5 @@
 
-function GoogleMapTools(googleMap){
+function GoogleMapMarkerTool(googleMap){
     var markersOnMap = {};
     var map = googleMap;
     var icons = GoogleMapIcons();

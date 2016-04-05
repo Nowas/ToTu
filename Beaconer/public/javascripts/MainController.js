@@ -44,6 +44,11 @@ function MainController(config) {
     
     function markerClicked(data){
         vehicleController.setSelectedDisplayText(data.displayText);
+        retreiveDataFromServer('http://localhost:3001/vehicleRoute', {lineId: data.lineId},function(data){
+            ToTuEventGenerator(
+                'DrawVehicleRoute',
+                data); 
+        })
     }
         
     function mapClicked(data){

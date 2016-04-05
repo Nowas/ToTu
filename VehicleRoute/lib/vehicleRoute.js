@@ -30,9 +30,9 @@ exports.getVehicleRoute = function(id,callback) {
                     console.log('e2' + err);
                 if(data.length == 0)
                     return callback([]); 
-                var polyLine = [{x: data[0].XOD, y: data[0].YOD}];
+                var polyLine = [{x: data[0].XOD.toString(), y: data[0].YOD.toString()}];
                 data.forEach(function(entry){
-                   polyLine.push({x: entry.XOD, y:entry.YOD}) 
+                   polyLine.push({x: entry.XOD.toString(), y:entry.YOD.toString()}) 
                 });
                 db.close();
                 callback(polyLine);

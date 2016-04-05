@@ -5,9 +5,9 @@ var vehicleRoute = require('./../lib/vehicleRoute');
 
 router.get('/', function(req, res){
     vehicleRoute.getVehicleRoute(
-        req.query.id,
-        function(data){
-            res.json({success:true, data: data});    
+        req.query.lineId,
+        function(polylinePoint){
+            res.json({'points':polylinePoint});    
         });    
 });
 
@@ -23,7 +23,7 @@ router.delete('/', function(req, res){
 
 module.exports.initSocket = function(socket){ 
     socket.on("getRoute", function(data, callback) {
-        callback({success:true, data: vehicleRoute.getVehicles()});
+        callback(vehicleRoute.getVehiclesRoute());
     });
     socket.on("putRoute", function(data, callback) {
         callback({success:false});
