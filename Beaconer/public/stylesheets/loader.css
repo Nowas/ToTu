@@ -1,41 +1,11 @@
-.load-wrapp {
-    position: fixed; /* or absolute */
-    top: 50%;
-    margin-top: -50px;
-    left: 50%;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
-    padding: 20px 20px 20px;
-    border-radius: 5px;
-    text-align: center;
-    color: #FFF;
-    background-color: #000;
-    opacity: 0.5;
-}
-
-.line {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    background-color: #4b9cdb;
-}
-
-.loadloader .line:nth-last-child(1) {animation: loadingC .6s .1s linear infinite;}
-.loadloader .line:nth-last-child(2) {animation: loadingC .6s .2s linear infinite;}
-.loadloader .line:nth-last-child(3) {animation: loadingC .6s .3s linear infinite;}
-
-@keyframes loadingC {
-    0 {transform: translate(0,0);}
-    50% {transform: translate(0,15px);}
-    100% {transform: translate(0,0);}
-}
-
-
 .loading-container {
-  height: 150px;
-  width: 150px;
+  position: fixed;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -100px;
+  height: 200px;
+  width: 200px;
   color: #2d6ca2;
   background-color: #e8e8e8;
   background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #e8e8e8 100%);
@@ -43,7 +13,6 @@
   background-repeat: repeat-x;
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
   border-radius: 50%;
-  margin: 20px auto 0 auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
@@ -52,50 +21,36 @@
 
 .loading-cloud {
   top: 25px;
-  font-size: 450%;
+  font-size: 1100%;
 }
 
-.loading-drop1,
-.loading-drop2,
-.loading-drop3 {
-  font-size: 100%;
-  transform: rotateZ(30deg);
-  animation: move 1s steps(1000) infinite;
-  top: -5px;
-  left: -55px;
-}
-
-.loading-drop1 {
-  animation-delay: 300ms;
-}
-
-.loading-drop2 {
-  animation-delay: 0ms;
-}
-
-.loading-drop3 {
-  animation-delay: 100ms;
+.loading-refresh {
+  font-size: 40%;
+  color: #FFF;
+  animation: rotate 3s steps(1000) infinite;
+  top: -210px;
+  left: -10px;
 }
 
 .loading-text {
-  margin-left: -120px;
   position: relative;
-  top: 60px;
+  top: -160px;  
   animation: blink 1.5s steps(1000) infinite;
 }
 
-@keyframes move {
+
+@keyframes rotate {
   0% {
-    top: -5px;
-    left: -55px;
-  }
-  75% {
     opacity: 1;
+  transform: rotateZ(0deg);
+  }
+  50% {
+  transform: rotateZ(180deg);
+    opacity: 0.5;
   }
   100% {
-    top: 40px;
-    left: -70px;
-    opacity: 0;
+  transform: rotateZ(360deg);
+    opacity: 1;
   }
 }
 

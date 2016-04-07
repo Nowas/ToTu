@@ -2,8 +2,11 @@
 <html>
     <head>
         <title>{{ title }}</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel='stylesheet' href='/stylesheets/loader.css' />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+
     </head>
     <body>
 
@@ -12,21 +15,14 @@
                 data-bus-list-url="{{ VehBeaconAddress }}"
             </div>
         </div>
-        <div id="loader" class="load-wrapp" style="display:none">
-            <div class="loadloader">
-                <p>Loading...</p>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </div>
+
         <div id='loader'>
             <div class='loading-container text-center'>
-                <i class="glyphicon glyphicon-cloud loading-cloud" aria-hidden="true"></i>
-                <i class="glyphicon glyphicon-tint loading-drop1" aria-hidden="true"></i>
-                <i class="glyphicon glyphicon-tint loading-drop2" aria-hidden="true"></i>
-                <i class="glyphicon glyphicon-tint loading-drop3" aria-hidden="true"></i>
-                <i class='loading-text'>Loading...</i>
+                <i class="glyphicon glyphicon-cloud loading-cloud" aria-hidden="true">
+                    <i class="glyphicon glyphicon-refresh loading-refresh" aria-hidden="true"></i>
+                </i>
+                    <i class='loading-text'>Loading...</i>
+    
             </div>
         </div>
         
@@ -48,5 +44,6 @@
         <script type="text/javascript" src="/javascripts/VehicleStopMarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/RetreiveDataFromServer.js"></script>
         <script type="text/javascript" src="/javascripts/MainController.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>
