@@ -16,6 +16,7 @@ body {
   width: 100%;
 }
 #map {
-  height: 100%;
-  width: 100%;
+    position: absolute;
+  height: 99%;
+  width: 99%;
 }

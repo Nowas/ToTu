@@ -106,7 +106,7 @@ var  MarkerArrayTool = function(){
         if( !b || !b.id)
             return -1;
         
-        return a.id.localeCompare(b.id);
+        return a.id.toString().localeCompare(b.id.toString());
     }
 
     return{

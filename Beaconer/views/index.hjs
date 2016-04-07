@@ -3,20 +3,36 @@
     <head>
         <title>{{ title }}</title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/loader.css' />
     </head>
     <body>
 
-        <div id="map"
+        <div>
+            <div id="map"
                 data-bus-list-url="{{ VehBeaconAddress }}"
+            </div>
         </div>
-
-        <div id="loader" class="loader" style="display:none">
+        <div id="loader" class="load-wrapp" style="display:none">
+            <div class="loadloader">
+                <p>Loading...</p>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div id='loader'>
+            <div class='loading-container text-center'>
+                <i class="glyphicon glyphicon-cloud loading-cloud" aria-hidden="true"></i>
+                <i class="glyphicon glyphicon-tint loading-drop1" aria-hidden="true"></i>
+                <i class="glyphicon glyphicon-tint loading-drop2" aria-hidden="true"></i>
+                <i class="glyphicon glyphicon-tint loading-drop3" aria-hidden="true"></i>
+                <i class='loading-text'>Loading...</i>
+            </div>
         </div>
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
-        <script type="text/javascript" src="/javascripts/spin.js"></script>
         <script type="text/javascript" src="/javascripts/EventGenerator.js"></script>
         
         <script type="text/javascript" src="/javascripts/MarkerArrayTool.js"></script>

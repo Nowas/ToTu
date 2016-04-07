@@ -54,7 +54,12 @@ function GoogleMapController(config) {
         markersMapTool.refreshMerkers(data);
     }); 
 
+    ToTuEventReceiver('MapClicked', function (data) {
+        polylineMapTool.clear();
+    }); 
+        
     ToTuEventReceiver('DrawVehicleRoute', function (data) {
+        polylineMapTool.clear();
         polylineMapTool.draw(data);
     }); 
 }

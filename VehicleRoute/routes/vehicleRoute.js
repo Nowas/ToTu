@@ -5,9 +5,9 @@ var vehicleRoute = require('./../lib/vehicleRoute');
 
 router.get('/', function(req, res){
     vehicleRoute.getVehicleRoute(
-        req.query.lineId,
+        req.query.runId,
         function(polylinePoint){
-            res.json({'points':polylinePoint});    
+            res.jsonp(polylinePoint);    
         });    
 });
 

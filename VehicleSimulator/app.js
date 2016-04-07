@@ -37,7 +37,7 @@ function ReadDataFromSimulateDataDB(spreadDelaySec) {
             data.forEach(function (entry) {
                setTimeout(function () { 
                    sendPositionToBeacon(                        
-                       {"id":'\'' + entry.ID + '\'',
+                       {"id":entry.ID,
                         "lineId":entry.LINIAID,
                         "displayText":entry.IDENTYFIKATOR,
                         "lat":entry.SZEROKOSC,
