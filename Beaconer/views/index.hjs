@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div id='loader'>
+        <div id='loader' style="display:none">
             <div class='loading-container text-center'>
                 <i class="glyphicon glyphicon-cloud loading-cloud" aria-hidden="true">
                     <i class="glyphicon glyphicon-refresh loading-refresh" aria-hidden="true"></i>
