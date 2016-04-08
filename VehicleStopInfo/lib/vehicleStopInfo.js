@@ -34,22 +34,19 @@ exports.getVehicleStopInfo = function(id,callback) {
             var routes = {};
             data.forEach(function(entry){
                 if(!routes[entry.LINE])
-                {
                     routes[entry.LINE] = []
-                }
                 if(!routes[entry.LINE][entry.DEP_H])
                     routes[entry.LINE][entry.DEP_H] = [];
                     
-                var nextDep = ((entry.MIN24 * 60 - totalSec) + 24*60*60) % (24*60*60);
-                var nextDepText = "";
-                if (nextDep > 3600)
-                    nextDepText = entry.DEP_H + ":" + entry.DEP_M; 
-                else if (nextDep > 60)
-                    nextDepText = Math.floor(nextDep / 60) + " min";
-                else
-                    nextDepText = nextDep + " sek";
+                // var nextDep = ((entry.MIN24 * 60 - totalSec) + 24*60*60) % (24*60*60);
+                // var nextDepText = "";
+                // if (nextDep > 3600)
+                //     nextDepText = entry.DEP_H + ":" + entry.DEP_M; 
+                // else if (nextDep > 60)
+                //     nextDepText = Math.floor(nextDep / 60) + " min";
+                // else
+                //     nextDepText = nextDep + " sek";
                 
-                routes[entry.LINE]['nextDep'] = nextDepText;
                 routes[entry.LINE][entry.DEP_H].push( entry.DEP_M);
             });
 
