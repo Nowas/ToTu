@@ -63,7 +63,7 @@ exports.getTimeTable = function(departures, refTime){
         if(!timeTable[entry.line][entry.depH])
             timeTable[entry.line][entry.depH] = [];
         timeTable[entry.line][entry.depH].push(
-            { minutes: entry.depM,
+            { minute: entry.depM,
               direction: entry.direction});
         
     });
@@ -74,14 +74,14 @@ exports.getTimeTable = function(departures, refTime){
         Object.keys(timeTable[line]).forEach(function (hour) {
             hours.push({
                 hour: hour,
-                departures: timeTable[line][hour].sort(function(a, b) {
+                minutes: timeTable[line][hour].sort(function(a, b) {
                     return a.minutes - b.minutes;
                     })
             })
         })
         res.push({
             line:line,
-            timetable: hours
+            hours: hours
         })
     });
     return res;
