@@ -1,11 +1,16 @@
 var assert = require("assert");
 var tools = require("../lib/vehicleStopInfo.js");
 
-describe('Vehicle Top Info tests', function(){
+describe('Vehicle stop next departure tests', function(){
     var now = new Date(2016, 01, 01, 15, 55, 0);
             
     it('empty call passes', function(done){
         tools.getNextDeparture(null, now);
+        done()
+    });
+
+    it('empty ref time passes', function(done){
+        tools.getNextDeparture([], null);
         done()
     });
 
