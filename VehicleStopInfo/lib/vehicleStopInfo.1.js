@@ -6,42 +6,23 @@ var pool = new Pool({
     , log : true
 });
     
-Number.prototype.padLeft = function (n,str){
-    return Array(n-String(this).length+1).join(str||'0')+this;
+function compDepartures(a, b){
+    if( !a )
+        return 1;
+    if( !b )
+        return -1;    
+    return a.depH * 60 + a.depM > b.depH * 60 + b.depM;
 }
-
+    
 exports.getNextDeparture = function(departures, refTime){
+    
+    departures.sort(compDepartures);
+    
     if(!departures)
-        return [];
-    var refTimeSeconds = (refTime.getHours() * 60 + refTime.getMinutes())*60 + refTime.getSeconds();
-    var nextDeps = {};
-    
+        return [];    
     departures.forEach(function(entry){
-        var depTimeSpan =  (entry.depH*60+entry.depM)*60 - refTimeSeconds;
-        if( depTimeSpan <= 0)
-            return;
-            
-        if(!nextDeps[entry.line] || 
-            (nextDeps[entry.line].depTimeSpan > depTimeSpan && depTimeSpan > refTimeSeconds))
-        {
-            nextDeps[entry.line]  = {depH:entry.depH, depM:entry.depM, depTimeSpan: depTimeSpan};
-        }   
+        
     });
-    
-    var lines = Object.keys(nextDeps);
-    
-    var res = [];
-    lines.forEach(function (lineNumber) {
-        var depText = "";
-        if (nextDeps[lineNumber].depTimeSpan > 3600)
-            depText = (nextDeps[lineNumber].depH%24).padLeft(2) + ":" + (nextDeps[lineNumber].depM).padLeft(2); 
-        else if (nextDeps[lineNumber].depTimeSpan > 60)
-            depText = Math.floor(nextDeps[lineNumber].depTimeSpan / 60) + " min";
-        else
-            depText = nextDeps[lineNumber].depTimeSpan + " sek";
-        res.push({line: lineNumber, time: depText});      
-    })
-    return res;
 }
 
 exports.getVehicleStopInfo = function(id,callback) {
