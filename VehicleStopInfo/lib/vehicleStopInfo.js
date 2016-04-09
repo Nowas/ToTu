@@ -46,38 +46,6 @@ exports.getNextDeparture = function(departures, refTime){
     return res;
 }
 
-exports.getLineTimeTable = function(departures, refTime){
-    if(!departures)
-        return [];
-        
-    if(!refTime)
-        refTime = new Date();
-
-    var refTimeHour = refTime.getHours();
-    var refTimeMinutes = refTime.getMinutes();
-    
-    var timeTable = {};
-    departures.forEach(function(entry){
-        if(!timeTable[entry.depH])
-            timeTable[entry.depH] = [];
-        timeTable[entry.depH].push(
-            { minutes: entry.depM,
-              direction: entry.direction});
-        
-    });
-    
-    var res = [];
-    Object.keys(timeTable).forEach(function (hour) {
-        res.push({
-            hour: hour,
-            departures: timeTable[hour].sort(function(a, b) {
-                return a.minutes - b.minutes;
-                })
-        })
-    })
-    return res;
-}
-
 exports.getTimeTable = function(departures, refTime){
     if(!departures)
         return [];
@@ -90,23 +58,32 @@ exports.getTimeTable = function(departures, refTime){
     
     var timeTable = {};
     departures.forEach(function(entry){
-        if(!timeTable[entry.depH])
-            timeTable[entry.depH] = [];
-        timeTable[entry.depH].push(
+        if(!timeTable[entry.line])
+            timeTable[entry.line] = {};
+        if(!timeTable[entry.line][entry.depH])
+            timeTable[entry.line][entry.depH] = [];
+        timeTable[entry.line][entry.depH].push(
             { minutes: entry.depM,
               direction: entry.direction});
         
     });
     
     var res = [];
-    Object.keys(timeTable).forEach(function (hour) {
-        res.push({
-            hour: hour,
-            departures: timeTable[hour].sort(function(a, b) {
-                return a.minutes - b.minutes;
-                })
+    Object.keys(timeTable).forEach(function (line) {
+        var hours = []
+        Object.keys(timeTable[line]).forEach(function (hour) {
+            hours.push({
+                hour: hour,
+                departures: timeTable[line][hour].sort(function(a, b) {
+                    return a.minutes - b.minutes;
+                    })
+            })
         })
-    })
+        res.push({
+            line:line,
+            timetable: hours
+        })
+    });
     return res;
 }
 
