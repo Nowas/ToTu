@@ -13,6 +13,10 @@ Number.prototype.padLeft = function (n,str){
 exports.getNextDeparture = function(departures, refTime){
     if(!departures)
         return [];
+        
+    if(!refTime)
+        refTime = new Date();
+
     var refTimeSeconds = (refTime.getHours() * 60 + refTime.getMinutes())*60 + refTime.getSeconds();
     var nextDeps = {};
     
@@ -28,10 +32,8 @@ exports.getNextDeparture = function(departures, refTime){
         }   
     });
     
-    var lines = Object.keys(nextDeps);
-    
     var res = [];
-    lines.forEach(function (lineNumber) {
+    Object.keys(nextDeps).forEach(function (lineNumber) {
         var depText = "";
         if (nextDeps[lineNumber].depTimeSpan > 3600)
             depText = (nextDeps[lineNumber].depH%24).padLeft(2) + ":" + (nextDeps[lineNumber].depM).padLeft(2); 
@@ -40,6 +42,70 @@ exports.getNextDeparture = function(departures, refTime){
         else
             depText = nextDeps[lineNumber].depTimeSpan + " sek";
         res.push({line: lineNumber, time: depText});      
+    })
+    return res;
+}
+
+exports.getLineTimeTable = function(departures, refTime){
+    if(!departures)
+        return [];
+        
+    if(!refTime)
+        refTime = new Date();
+
+    var refTimeHour = refTime.getHours();
+    var refTimeMinutes = refTime.getMinutes();
+    
+    var timeTable = {};
+    departures.forEach(function(entry){
+        if(!timeTable[entry.depH])
+            timeTable[entry.depH] = [];
+        timeTable[entry.depH].push(
+            { minutes: entry.depM,
+              direction: entry.direction});
+        
+    });
+    
+    var res = [];
+    Object.keys(timeTable).forEach(function (hour) {
+        res.push({
+            hour: hour,
+            departures: timeTable[hour].sort(function(a, b) {
+                return a.minutes - b.minutes;
+                })
+        })
+    })
+    return res;
+}
+
+exports.getTimeTable = function(departures, refTime){
+    if(!departures)
+        return [];
+        
+    if(!refTime)
+        refTime = new Date();
+
+    var refTimeHour = refTime.getHours();
+    var refTimeMinutes = refTime.getMinutes();
+    
+    var timeTable = {};
+    departures.forEach(function(entry){
+        if(!timeTable[entry.depH])
+            timeTable[entry.depH] = [];
+        timeTable[entry.depH].push(
+            { minutes: entry.depM,
+              direction: entry.direction});
+        
+    });
+    
+    var res = [];
+    Object.keys(timeTable).forEach(function (hour) {
+        res.push({
+            hour: hour,
+            departures: timeTable[hour].sort(function(a, b) {
+                return a.minutes - b.minutes;
+                })
+        })
     })
     return res;
 }
