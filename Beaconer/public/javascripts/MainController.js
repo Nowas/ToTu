@@ -30,7 +30,7 @@ function MainController(config) {
     function retrieveVehicleStopData(id)
     {
         retreiveDataFromServer('http://localhost:3002/vehicleStopInfo', {stopId: id},function(data){
-            $(".map-info-right").html(data.stopName);
+            $(".map-info-right").html(data.stopName + '<br/>' + data.departures);
 
                 $("td[colspan=3]").find(".rozklad").hide();
                 $(".odjazdy").click(function (event) {

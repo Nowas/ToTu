@@ -87,6 +87,26 @@ exports.getTimeTable = function(departures, refTime){
     return res;
 }
 
+function processVehicleStopDbData(err, data, callback) {
+    if(data.length == 0)
+        return callback([]);
+    data = data.map(function(e){
+        return  {
+            line:e.LINE,
+            direction:e.DIRECTION,
+            stopName:e.STOPNAME,
+            depH:e.DEPH,
+            depM:e.DEPM
+        };
+        
+    });
+    callback({
+        stopName: data[0].stopName,
+        departures: exports.getNextDeparture(data),
+        timeTable: exports.getTimeTable(data)
+    });
+}
+
 exports.getVehicleStopInfo = function(id,callback) {
     if(!id)
         return callback([]);
@@ -94,32 +114,18 @@ exports.getVehicleStopInfo = function(id,callback) {
     pool.open(cn, function (err, db) {
         if (err) 
             return console.log('e1' + err);
-
-        db.query('SELECT TLI_NAZWA as line,' +
+        var sql ='SELECT TLI_NAZWA as line,' +
         ' TLI_OST_PST_NAZWA AS direction,' +
         ' PST_NAZWA as stopName,' +
         ' GODZ_ODJ as depH, MIN_ODJ as depM' +
         ' FROM VIEW_ODJAZDY' +
-        ' WHERE PST_ID = ?', [id.toString()], function (err, data) {
+        ' WHERE PST_ID = ?';
+        
+        db.query(sql, [id.toString()], function( err, data){
             if (err)
                 console.log('e2' + err);
             db.close();
-            if(data.length == 0)
-                return callback([]);
-            data = data.map(function(e){
-                return  {
-                    line:e.LINE,
-                    direction:e.DIRECTION,
-                    stopName:e.STOPNAME,
-                    depH:e.DEPH,
-                    depM:e.DEPM
-                };
-                
-            });
-            callback({
-                stopName: data[0].stopName,
-                timeTable: exports.getTimeTable(data)
-            });
+            processVehicleStopDbData(err,data, callback)
         });
     });
     
