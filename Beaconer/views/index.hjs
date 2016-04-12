@@ -25,6 +25,10 @@
     
             </div>
         </div>
+
+        <div class="map-info-right" style="display:none;overflow-y: scroll;">
+            gsfamgs,fdgm sdmfg.,dsm,g.m .,sgfds.g
+        </div>
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -44,6 +48,7 @@
         <script type="text/javascript" src="/javascripts/VehicleStopMarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/RetreiveDataFromServer.js"></script>
         <script type="text/javascript" src="/javascripts/MainController.js"></script>
+        <script type="text/javascript" src="/javascripts/MapDisplayTool.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>
