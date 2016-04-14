@@ -28,15 +28,14 @@ function MainController(config) {
     }
 
     function displaytimeTable(table, entry){
-            table.append('<tr class="timetableHeader"><td>' + entry.line + '</td>'+
+            table.append('<tr class="timetableHeader"><td><strong>' + entry.line + '</strong></td>'+
                 '<td>'+ entry.nextDeparture.direction+'</td>'+
                 '<td>'+ entry.nextDeparture.nextDeparture+'</td></tr>'); 
-                table.append('<tr class="timetableDetails"><td colspan=3>');
-                table.append(displaytimeTableDetails(table,entry));
-                table.append('</td></tr>'); 
+                table.append('<tr class="timetableDetails"><td colspan=3></td></tr>');
+                $("table.departures tr.timetableDetails:last td").html(displaytimeTableDetails(entry));
     }
     
-    function displaytimeTableDetails(minutes){
+    function displaytimeTableMinutes(minutes){
         var minutesString = "";
         
         minutes.forEach(function(entry){
@@ -45,19 +44,23 @@ function MainController(config) {
         return minutesString;
     }
 
-    function displaytimeTableDetails(table, entry){
+    function displaytimeTableDetails(entry){
+        Number.prototype.padLeft = function (n,str){
+            return Array(n-String(this).length+1).join(str||'0')+this;
+        }
+
         var detailsTable = $('<table></table>').addClass('table table-bordered table-condensed timetable');
             entry.hours.forEach(function(entry){
-                detailsTable.append('<tr><td>'+entry.hour+'</td><td>'+ displaytimeTableDetails(entry.minutes) +'</td></tr>'); 
+                detailsTable.append('<tr><td><strong>'+(entry.hour%24).padLeft(2) +'</strong></td><td>'+ displaytimeTableMinutes(entry.minutes) +'</td></tr>'); 
             });     
-        table.append(detailsTable);
+        return(detailsTable);
     }
     
     function retrieveVehicleStopData(id)
     {
         retreiveDataFromServer('http://localhost:3002/vehicleStopInfo', {stopId: id},function(data){
             $("#vehicleStopInfo h2").text(data.stopName);
-            var table = $("table.departures"); 
+            var table = $("table.departures > tbody"); 
             table.html('');
             data.timeTable.forEach(function(entry){
                 displaytimeTable(table, entry);
@@ -71,7 +74,7 @@ function MainController(config) {
             });            
             $(".timetableDetails").click(function (event) {
                 event.stopPropagation();
-                $(event.target).slideUp(500);
+                $(event.target).closest("tr.timetableDetails").slideUp(500);
             });
 
             showRightInfo();

@@ -22,7 +22,7 @@ body {
 }
 
 .map-info-right{
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 1);
     color: rgba(50,50,50,1);
     right: 0px;
     top:0px;
@@ -32,3 +32,15 @@ body {
     max-width: 400px;
 }
 
+.timetable{
+    width: 100%;
+}
+
+td { 
+    padding: 2px;
+}
+
+.departures { 
+    border-spacing: 2px;
+    border-collapse: separate;
+}
