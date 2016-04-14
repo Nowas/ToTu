@@ -27,22 +27,54 @@ function MainController(config) {
         })
     }
 
+    function displaytimeTable(table, entry){
+            table.append('<tr class="timetableHeader"><td>' + entry.line + '</td>'+
+                '<td>'+ entry.nextDeparture.direction+'</td>'+
+                '<td>'+ entry.nextDeparture.nextDeparture+'</td></tr>'); 
+                table.append('<tr class="timetableDetails"><td colspan=3>');
+                table.append(displaytimeTableDetails(table,entry));
+                table.append('</td></tr>'); 
+    }
+    
+    function displaytimeTableDetails(minutes){
+        var minutesString = "";
+        
+        minutes.forEach(function(entry){
+            minutesString += entry.minute + ' ' 
+        });
+        return minutesString;
+    }
+
+    function displaytimeTableDetails(table, entry){
+        var detailsTable = $('<table></table>').addClass('table table-bordered table-condensed timetable');
+            entry.hours.forEach(function(entry){
+                detailsTable.append('<tr><td>'+entry.hour+'</td><td>'+ displaytimeTableDetails(entry.minutes) +'</td></tr>'); 
+            });     
+        table.append(detailsTable);
+    }
+    
     function retrieveVehicleStopData(id)
     {
         retreiveDataFromServer('http://localhost:3002/vehicleStopInfo', {stopId: id},function(data){
-            $(".map-info-right").html(data.stopName + '<br/>' + data.departures);
+            $("#vehicleStopInfo h2").text(data.stopName);
+            var table = $("table.departures"); 
+            table.html('');
+            data.timeTable.forEach(function(entry){
+                displaytimeTable(table, entry);
+            });     
+                       
+            $("tr.timetableDetails").hide();
+            $(".timetableHeader").click(function (event) {
+                event.stopPropagation();
+                var target = $(event.target).closest('tr').next('tr');
+                target.toggle(  );
+            });            
+            $(".timetableDetails").click(function (event) {
+                event.stopPropagation();
+                $(event.target).slideUp(500);
+            });
 
-                $("td[colspan=3]").find(".rozklad").hide();
-                $(".odjazdy").click(function (event) {
-                    event.stopPropagation();
-                    var $target = $(event.target);
-                    if ($target.closest("td").attr("colspan") > 1) {
-                        $target.slideUp();
-                    } else {
-                        $target.closest("tr").next().find(".rozklad").slideToggle();
-                    }
-                });
-                            showRightInfo();
+            showRightInfo();
             hideLoader();
         })
     }

@@ -27,7 +27,21 @@
         </div>
 
         <div class="map-info-right" style="display:none;overflow-y: scroll;">
-            gsfamgs,fdgm sdmfg.,dsm,g.m .,sgfds.g
+            <div id="vehicleStopInfo" class="info-body">
+                <h2></h2>
+                <table class="table table-striped departures">
+                    <thead>
+                        <tr>
+                            <th>Linia</th>
+                            <th>Kierunek</th>
+                            <th>Odjazdy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>

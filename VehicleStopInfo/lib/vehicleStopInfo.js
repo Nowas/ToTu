@@ -10,52 +10,40 @@ Number.prototype.padLeft = function (n,str){
     return Array(n-String(this).length+1).join(str||'0')+this;
 }
 
-exports.getNextDeparture = function(departures, refTime){
+function getNextDepartureAsObject(departures, refTime){
     if(!departures)
-        return [];
+        departures = [];
         
     if(!refTime)
         refTime = new Date();
 
     var refTimeSeconds = (refTime.getHours() * 60 + refTime.getMinutes())*60 + refTime.getSeconds();
     var nextDeps = {};
-    
+
     departures.forEach(function(entry){
         var depTimeSpan =  (entry.depH*60+entry.depM)*60 - refTimeSeconds;
         if( depTimeSpan <= 0)
-            return;
-            
+            depTimeSpan += 60*60*24;        
         if(!nextDeps[entry.line] || 
-            (nextDeps[entry.line].depTimeSpan > depTimeSpan && depTimeSpan > refTimeSeconds))
+            nextDeps[entry.line].timeSpan > depTimeSpan)
         {
-            nextDeps[entry.line]  = {depH:entry.depH, depM:entry.depM, depTimeSpan: depTimeSpan};
+            nextDeps[entry.line]  = {
+                H:entry.depH, 
+                M:entry.depM, 
+                timeSpan: depTimeSpan,
+                direction: entry.direction};
         }   
     });
-    
-    var res = [];
-    Object.keys(nextDeps).forEach(function (lineNumber) {
-        var depText = "";
-        if (nextDeps[lineNumber].depTimeSpan > 3600)
-            depText = (nextDeps[lineNumber].depH%24).padLeft(2) + ":" + (nextDeps[lineNumber].depM).padLeft(2); 
-        else if (nextDeps[lineNumber].depTimeSpan > 60)
-            depText = Math.floor(nextDeps[lineNumber].depTimeSpan / 60) + " min";
-        else
-            depText = nextDeps[lineNumber].depTimeSpan + " sek";
-        res.push({line: lineNumber, time: depText});      
-    })
-    return res;
+    return nextDeps;
 }
 
-exports.getTimeTable = function(departures, refTime){
+function getTimeTableAsObject(departures, refTime){
     if(!departures)
-        return [];
+        departures = [];
         
     if(!refTime)
         refTime = new Date();
 
-    var refTimeHour = refTime.getHours();
-    var refTimeMinutes = refTime.getMinutes();
-    
     var timeTable = {};
     departures.forEach(function(entry){
         if(!timeTable[entry.line])
@@ -67,7 +55,40 @@ exports.getTimeTable = function(departures, refTime){
               direction: entry.direction});
         
     });
-    
+    return timeTable;
+}
+
+exports.getNextDeparture = function(departures, refTime){
+    var nextDeps = getNextDepartureAsObject(departures, refTime);
+        
+    var res = [];
+    Object.keys(nextDeps).forEach(function (lineNumber) {
+        var depText = getTimeSpanAsText(
+                    nextDeps[lineNumber].timeSpan,       
+                    nextDeps[lineNumber].H,
+                    nextDeps[lineNumber].M); 
+        res.push({
+            line: lineNumber, 
+            time: depText,
+            direction: nextDeps[lineNumber].direction});      
+    })
+    return res;
+}
+
+
+function getTimeSpanAsText(timeSpan, hour, minute){
+    if (timeSpan > 3600)
+        return (hour%24).padLeft(2) + ":" + (minute).padLeft(2); 
+    else if (timeSpan > 60)
+        return Math.floor(timeSpan / 60) + " min";
+    else
+        return timeSpan + " sek";
+}    
+
+exports.getTimeTable = function(departures, refTime){
+    var timeTable = getTimeTableAsObject(departures, refTime);    
+    var nextDeps = getNextDepartureAsObject(departures, refTime);
+    console.log(nextDeps);
     var res = [];
     Object.keys(timeTable).forEach(function (line) {
         var hours = []
@@ -79,9 +100,18 @@ exports.getTimeTable = function(departures, refTime){
                     })
             })
         })
+        if(!nextDeps[line])
+            console.log(line);
         res.push({
             line:line,
-            hours: hours
+            hours: hours,
+            nextDeparture: {
+                direction: nextDeps[line].direction,
+                nextDeparture: getTimeSpanAsText(
+                    nextDeps[line].timeSpan,       
+                    nextDeps[line].H,
+                    nextDeps[line].M)
+            }
         })
     });
     return res;
@@ -102,7 +132,6 @@ function processVehicleStopDbData(err, data, callback) {
     });
     callback({
         stopName: data[0].stopName,
-        departures: exports.getNextDeparture(data),
         timeTable: exports.getTimeTable(data)
     });
 }

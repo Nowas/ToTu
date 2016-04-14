@@ -71,7 +71,7 @@ describe('Vehicle stop next departure tests', function(){
         var now = new Date(2016, 01, 01, 15, 55, 0);
         var deps = [{line:'1', depH:15, depM:00}]
         var nextDeps = tools.getNextDeparture(deps, now);
-        assert.equal( nextDeps.length, 0);        
+        assert.equal( nextDeps.length, 1);        
         done()
     });    
 });
