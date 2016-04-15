@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   fill="#000000"
+   height="48"
+   viewBox="0 0 24 24"
+   width="48"
+   id="svg3031"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="busstop_btn.svg"
+   inkscape:export-filename="D:\_roboczy\TransMap\ToTu.App\Content\images\Material\buttons\search_btn.png"
+   inkscape:export-xdpi="353"
+   inkscape:export-ydpi="353">
+  <metadata
+     id="metadata3041">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3039">
+    <filter
+       inkscape:collect="always"
+       id="filter4038">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.85571432"
+         id="feGaussianBlur4040" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1858"
+     inkscape:window-height="1057"
+     id="namedview3037"
+     showgrid="false"
+     inkscape:zoom="12.374369"
+     inkscape:cx="17.508636"
+     inkscape:cy="22.574741"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3031"
+     inkscape:snap-grids="true"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="12.84914,18.021121"
+       id="guide3286" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="35.153308,17.455436"
+       id="guide3288" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="16.404877,35.153308"
+       id="guide3290" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="17.051374,12.84914"
+       id="guide3292" />
+  </sodipodi:namedview>
+  <path
+     style="opacity:0.51539827;fill:#000000;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.31553173px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4038)"
+     d="M 23.71875 2.125 C 11.86089 2.7299413 2.40625 12.603055 2.40625 24.6875 C 2.40625 37.161765 12.449184 47.28125 24.84375 47.28125 C 37.238316 47.28125 47.3125 37.161765 47.3125 24.6875 C 47.3125 12.213235 37.238316 2.125 24.84375 2.125 C 24.45642 2.125 24.101262 2.1054858 23.71875 2.125 z "
+     transform="scale(0.5,0.5)"
+     id="path3156" />
+  <path
+     sodipodi:type="arc"
+     style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="path3150"
+     sodipodi:cx="23"
+     sodipodi:cy="25.457144"
+     sodipodi:rx="17.114286"
+     sodipodi:ry="17.114286"
+     d="m 40.114286,25.457144 a 17.114286,17.114286 0 1 1 -34.2285724,0 17.114286,17.114286 0 1 1 34.2285724,0 z"
+     transform="matrix(0.62489861,0,0,0.62489861,-2.3369536,-3.8724193)" />
+  <path
+     d="M0 0h24v24H0z"
+     fill="none"
+     id="path3033" />
+  <path
+     inkscape:connector-curvature="0"
+     d="M 15.098141,14.478513 12.619628,12 V 10.029582 C 13.338397,9.7693384 13.858885,9.0877474 13.858885,8.2822307 13.858885,7.2536478 13.028583,6.423346 12,6.423346 c -1.028583,0 -1.858885,0.8303018 -1.858885,1.8588847 0,0.8055167 0.520488,1.4871077 1.239257,1.7473513 V 12 L 8.901859,14.478513 H 6.4233461 v 3.098141 H 9.5214872 V 15.686788 L 12,13.084349 l 2.478513,2.602439 v 1.889866 h 3.098141 v -3.098141 h -2.478513 z"
+     id="path4327"
+     style="fill:#757575;fill-opacity:1" />
+</svg>

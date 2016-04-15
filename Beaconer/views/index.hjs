@@ -26,6 +26,22 @@
             </div>
         </div>
 
+        <div class="map-info-bottom">
+            <img class="map-menu-btn" src="/images/Material/ic_search_black_24px.svg" alt="Search">
+            <input id="searchText" type="text" data-lookup="yes" data-action='myUrl'/>
+        </div>
+
+        <div class="map-btn-menu">
+            <table class="map-menu-table">
+                <tr>
+                    <td>
+                        <img class="map-search-btn" src="/images/material/buttons/search_btn.svg" alt="Search" style="width:50px;height:50px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
         <div class="map-info-right" style="display:none;overflow-y: scroll;">
             <div id="vehicleStopInfo" class="info-body">
                 <h2></h2>
