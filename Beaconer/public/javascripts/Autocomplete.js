@@ -19,18 +19,17 @@
 
             $.ajax({
                 url: url,
-                dataType: "json",
+                dataType: "jsonp",
                 data: {
-                    maxRows: 10,
-                    szukanaFraza: request.term
+                    searchTerm: request.term
                 },
                 success: function (data) {
-                    cache[url][term] = $.map(data.obiekty, function (item) {
+                    cache[url][term] = $.map(data, function (item) {
                         return {
-                            id: item.ObiektID,
-                            typ: item.Typ,
-                            label: item.Nazwa,
-                            value: item.Nazwa
+                            id: item.id,
+                            type: item.type,
+                            label: item.name,
+                            value: item.name
                         }
                     });
                     response(cache[url][term]);
@@ -42,30 +41,35 @@
         select: function (event, ui) {
             if (ui.item != null) {
                 this.blur();
-                if (ui.item.typ == 'PRZYSTANEK') {
-                    var ev = $.Event('wyszukanoPrzystanekTT');
-                    ev.przystanekID = ui.item.id;
-                    $(window).trigger(ev);
+                if (ui.item.type == 'PRZYSTANEK') {
+                    ToTuEventGenerator('foundVehicleStop', {
+                        id: ui.item.id
+                    });
                 }
-                if (ui.item.typ == 'LINIA') {
-                    var ev = $.Event('wyszukanoLinieTT');
-                    ev.liniaID = ui.item.id;
-                    ev.identyfikator = ui.item.value;
-                    $(window).trigger(ev);
+                if (ui.item.type == 'LINIA') {
+                    ToTuEventGenerator('FoundLine', {
+                        id : ui.item.id,
+                        description : ui.item.value
+                    });
                 }
-                if ($(window).width() < 480)
-                    $(".map-info-bottom").toggle("slide",
-                        { direction: "left" }, 300);
-            }
+            if ($(window).width() < 480)
+                    $(".searchField").toggle("slide",
+                        { direction: "left" }, 300);            }
         },
+        search: function(event, ui) { 
+           $('.spinner').show();
+        },
+        response: function(event, ui) {
+            $('.spinner').hide();
+        }
     })
-    .autocomplete("instance")._renderItem = function (ul, item) {
+    .data("ui-autocomplete")._renderItem = function (ul, item) {
         var pole = $("<li>");
-        if( item.typ == 'PRZYSTANEK'){
-            pole.append("<div id='wrapper'><div id='first'><img src='/images/Material/ic_place_black_48px.svg' alt='Smiley face' height='20' width='20'></div><div id='second'><a>" + item.label + ", " + item.typ + "</a></div>")
+        if( item.type == 'PRZYSTANEK'){
+            pole.append("<div id='wrapper'><div id='first'><img src='/images/Material/ic_place_black_48px.svg' alt='Smiley face' height='20' width='20'></div><div id='second'><a>" + item.label + ", " + item.type + "</a></div>")
         }
         else{
-            pole.append("<div id='wrapper'><div id='first'><img src='/images/Material/ic_directions_bus_black_48px.svg' alt='Smiley face' height='20' width='20'></div><div id='second'><a>" + item.label + ", " + item.typ + "</a></div>")
+            pole.append("<div id='wrapper'><div id='first'><img src='/images/Material/ic_directions_bus_black_48px.svg' alt='Smiley face' height='20' width='20'></div><div id='second'><a>" + item.label + ", " + item.type + "</a></div>")
         }
         return pole.appendTo(ul);
     };

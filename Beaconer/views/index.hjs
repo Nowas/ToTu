@@ -3,6 +3,7 @@
     <head>
         <title>{{ title }}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
         <link rel='stylesheet' href='/stylesheets/loader.css' />
         <link rel='stylesheet' href='/stylesheets/style.css' />
 
@@ -26,9 +27,9 @@
             </div>
         </div>
 
-        <div class="map-info-bottom">
+        <div class="searchField" style="display:none">
             <img class="map-menu-btn" src="/images/Material/ic_search_black_24px.svg" alt="Search">
-            <input id="searchText" type="text" data-lookup="yes" data-action='myUrl'/>
+            <input id="searchText" type="text" data-lookup="yes" data-action='http://localhost:3003/search'/>
         </div>
 
         <div class="map-btn-menu">
@@ -61,8 +62,13 @@
         </div>
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"/></script>
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    
+        
+        
         <script type="text/javascript" src="/javascripts/EventGenerator.js"></script>
         
         <script type="text/javascript" src="/javascripts/MarkerArrayTool.js"></script>
@@ -73,6 +79,7 @@
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapController.js"></script>
         <script type="text/javascript" src="/javascripts/GoogleMaps/GoogleMapEvents.js"></script>
         
+        <script type="text/javascript" src="/javascripts/Autocomplete.js"></script>        
         <script type="text/javascript" src="/javascripts/MarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/VehicleMarkerController.js"></script>        
         <script type="text/javascript" src="/javascripts/VehicleStopMarkerController.js"></script>        

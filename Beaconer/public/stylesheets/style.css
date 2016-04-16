@@ -57,7 +57,7 @@ td {
     border-spacing:0.5em;
 }
 
-.map-info-bottom{
+.searchField{
     background-color: rgba(255, 255, 255, 0.5);
     color: rgba(50,50,50,1);
     left:10px;
@@ -67,63 +67,11 @@ td {
     max-width: 400px;
 }
 
-    .map-info-bottom{
-        top: 10px;
-    }.ui-menu-item{
-    background-color: #FFFFFF;
+.searchField{
+    top: 10px;
 }
-
-.ui-state-focus{
-    background-color: #EAF4FD !important;
-    background-image: none !important;
-    border: 0px !important;
-    margin: 0px !important;
-}
-
-
-
-.ui-autocomplete {
-max-height: 50%;
-overflow-y: auto;
-/* prevent horizontal scrollbar */
-overflow-x: hidden;
-}
-
-.ui-widget-content {
-    border:none !important; 
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-}
-
-#wrapper {
-    overflow: hidden;
-}
-
-#first {
-    float: left;
-    vertical-align: middle;
-    align-content: center;        
-    line-height: 40px;
-    height: 40px;
-    width: 40px;
-}
-
-#second {
-    vertical-align: middle;
-    line-height: 40px;
-    height: 40px;
-    margin: 0 0 0 30px;
-    border-bottom-color: #DCD8D8;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    font-size: 13px;
-    color: #333;
-    overflow: hidden;
-}
-
-
-.map-info-bottom input {
+    
+.searchField input {
     background-color: #FFF;
     border: 0px solid;
     height: 40px;
@@ -141,3 +89,57 @@ overflow-x: hidden;
     height:40px
 }
 
+
+
+
+.ui-menu-item{
+    background-color: #FFFFFF;
+}
+
+.ui-state-focus{
+    background-color: #EAF4FD !important;
+    background-image: none !important;
+    border: 0px !important;
+    margin: 0px !important;
+}
+
+
+
+.ui-autocomplete {
+max-height: 50%;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.ui-widget-content {
+    border:none !important; 
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+#wrapper {
+    overflow: hidden;
+}
+
+#first {
+    padding-left: 10px;
+    float: left !important;
+    vertical-align: middle;
+    align-content: center;        
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+#second {
+    vertical-align: middle;
+    line-height: 40px;
+    height: 40px;
+    border-bottom-color: #DCD8D8;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 13px;
+    color: #333;
+    overflow: hidden;
+}

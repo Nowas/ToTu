@@ -57,3 +57,18 @@ function manuUkryjPanel(mapInfoClass, direction) {
 $(".map-full-screen-btn").bind("click", function () {
     toggleFullScreen(document.body);
 });
+
+
+if ($(window).width() >= 480)
+    $(".searchField").show();
+
+$(".map-search-btn").bind("swipeleft click", function () {
+    if ($(window).width() < 480)
+        $(".searchField").toggle("slide",
+            { direction: "left" }, 300);
+    else
+        $(".searchField").show();
+    if($('#searchText').is(':visible')){
+        $('#searchText').focus();
+    }
+});
