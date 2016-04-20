@@ -30,9 +30,12 @@ function MainController(config) {
     function displaytimeTable(table, entry){
             table.append('<tr class="timetableHeader"><td><strong>' + entry.line + '</strong></td>'+
                 '<td>'+ entry.nextDeparture.direction+'</td>'+
-                '<td>'+ entry.nextDeparture.nextDeparture+'</td></tr>'); 
-                table.append('<tr class="timetableDetails"><td colspan=3></td></tr>');
-                $("table.departures tr.timetableDetails:last td").html(displaytimeTableDetails(entry));
+                '<td>'+ entry.nextDeparture.nextDeparture+'</td>'+
+                '<td style="width:10px"><i class="glyphicon glyphicon-tasks"" aria-hidden="true"></i></td></tr>');                 
+                table.append('<tr class="timetableDetails"><td colspan=4><div class="timetableDetails">'+
+                displaytimeTableDetails(entry) +
+                '</div></td></tr>');
+                // $("table.nextDepartures tr.timetableDetails:last td").html('<p>ddsads</p>');//displaytimeTableDetails(entry));
     }
     
     function displaytimeTableMinutes(minutes){
@@ -49,34 +52,47 @@ function MainController(config) {
             return Array(n-String(this).length+1).join(str||'0')+this;
         }
 
-        var detailsTable = $('<table></table>').addClass('table table-bordered table-condensed timetable');
+        var detailsTable = $('<table><tr>'+
+                                '<td>Godz.</td>'+
+                                '<td>Minuty</td>'+
+                            '</tr></table>').addClass('table');
             entry.hours.forEach(function(entry){
                 detailsTable.append('<tr><td><strong>'+(entry.hour%24).padLeft(2) +'</strong></td><td>'+ displaytimeTableMinutes(entry.minutes) +'</td></tr>'); 
             });     
-        return(detailsTable);
+        return(detailsTable[0].outerHTML);
     }
     
     function retrieveVehicleStopData(id)
     {
         retreiveDataFromServer('http://localhost:3002/vehicleStopInfo', {stopId: id},function(data){
             $("#vehicleStopInfo h2").text(data.stopName);
-            var table = $("table.departures > tbody"); 
-            table.html('');
-            data.timeTable.forEach(function(entry){
-                displaytimeTable(table, entry);
-            });     
-                       
-            $("tr.timetableDetails").hide();
-            $(".timetableHeader").click(function (event) {
-                event.stopPropagation();
-                var target = $(event.target).closest('tr').next('tr');
-                target.toggle(  );
-            });            
-            $(".timetableDetails").click(function (event) {
-                event.stopPropagation();
-                $(event.target).closest("tr.timetableDetails").slideUp(500);
-            });
-
+            var infoDiv = $("div.departures");
+            if( !data || !data.timeTable){
+                infoDiv.html('Brak aktualnych odjazdów');
+            }
+            else{
+                var table = $('<table id="nextDepartureTable" class="tabe table-striped nextDepartures"><tr>'+
+                                '<td>Linia</td>'+
+                                '<td>Kierunek</td>'+
+                                '<td colspan=2>Odjazdy</td>'+
+                            '</tr></table>');             
+                
+                data.timeTable.forEach(function(entry){
+                    displaytimeTable(table, entry);
+                });     
+                        
+                infoDiv.html(table);
+                $("div.timetableDetails").hide();
+                $("tr.timetableHeader").click(function (event) {
+                    event.stopPropagation();
+                    var target = $(this).next().find('div.timetableDetails');
+                    target.toggle('fold', {}, 500);
+                });            
+                $("tr.timetableDetails").click(function (event) {
+                    event.stopPropagation();
+                    $(this).find("div").toggle('fold', {}, 500);
+                });
+            }
             showRightInfo();
             hideLoader();
         })

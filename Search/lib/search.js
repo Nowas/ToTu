@@ -9,27 +9,23 @@ var pool = new Pool({
     
 exports.getSearchResult = function(searchTerm,callback) {
     if(!searchTerm)
-        return callback([]);
-    console.log( searchTerm);
-        
+        return callback([searchTerm]);
     pool.open(cn, function (err, db) {
         if (err) 
             return console.log('e1' + err);
-        searchTerm += '%';    
-    console.log( searchTerm);
-        db.query('SELECT MIN(NOB_FK_OBJ_ID) as ID,' +
+    db.query('SELECT MIN(NOB_FK_OBJ_ID) as ID,' +
         ' NOB_NAZWA as NAME,' +
         ' NOB_TYP as TYPE' +
         ' FROM VIEW_NAZWY_OBIEKTOW' +
-        ' WHERE NOB_NAZWA LIKE ?'  +
+        ' WHERE UPPER(NOB_NAZWA) like ?' +
         ' GROUP BY NOB_NAZWA, NOB_TYP' + 
-        ' ORDER BY NOB_NAZWA', [ searchTerm], function (err, data) {                                        
+        ' ORDER BY NOB_NAZWA', [ searchTerm.toUpperCase() + '%' ], function (err, data) {                                        
     console.log( "b:" + data + err);
             if (err) 
                 console.log('e2' + err);
     console.log( searchTerm);
             if(data.length == 0)
-                return callback([]); 
+                return callback([data]); 
     console.log( searchTerm);
             var searchResult = [];
             data.forEach(function(entry){
