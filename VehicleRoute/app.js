@@ -3,7 +3,7 @@ var bodyParser = require('body-parser'),
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server),
-    vehicleRoute = require('./routes/vehicleRoute');
+    vehicleRunRoute = require('./routes/vehicleRunRoute');
     
 module.exports = server;
 
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 var router = express.Router();              // get an instance of the express Router
- app.use('/vehicleRoute', vehicleRoute.router);
+ app.use('/vehicleRunRoute', vehicleRunRoute.router);
 
  
 

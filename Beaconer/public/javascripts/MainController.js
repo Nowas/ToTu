@@ -19,7 +19,7 @@ function MainController(config) {
     
     function retrieveVehicleData(id)
     {
-        retreiveDataFromServer('http://localhost:3001/vehicleRoute', {runId: id},function(data){
+        retreiveDataFromServer('http://localhost:3001/vehicleRunRoute', {runId: id},function(data){
             hideLoader();
             ToTuEventGenerator(
                 'DrawVehicleRoute',
@@ -115,7 +115,7 @@ function showVehicleStopData(data)
    return str;
 }
 
-    function markerClicked(data){
+    function selectedVehicle(data){
         vehicleController.setSelectedDisplayText(data.displayText);
         showLoader();
         if( data.type == 'Vehicle')
@@ -133,7 +133,8 @@ function showVehicleStopData(data)
     }
 
     ToTuEventReceiver('MapIdle', setNewVisibleCoords);
-    ToTuEventReceiver('MarkerClicked', markerClicked);
+    ToTuEventReceiver('MarkerClicked', selectedVehicle);
+    ToTuEventReceiver('SearchLineSelected', selectedVehicle);
     ToTuEventReceiver('MapClicked', mapClicked);
     ToTuEventReceiver('ZoomChanged', zoomChanged);
 }

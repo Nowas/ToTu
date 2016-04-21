@@ -7,7 +7,7 @@ var pool = new Pool({
 });
 
     
-exports.getVehicleRoute = function(id,callback) {
+exports.getVehicleRunRoute = function(id,callback) {
     if(!id)
         return callback([]);
         

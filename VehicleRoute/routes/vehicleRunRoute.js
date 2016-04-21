@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var vehicleRoute = require('./../lib/vehicleRoute');
+var vehicleRoute = require('./../lib/vehicleRunRoute');
 
 
 router.get('/', function(req, res){
-    vehicleRoute.getVehicleRoute(
+    vehicleRoute.getVehicleRunRoute(
         req.query.runId,
         function(polylinePoint){
             res.jsonp(polylinePoint);    
@@ -22,10 +22,10 @@ router.delete('/', function(req, res){
 
 
 module.exports.initSocket = function(socket){ 
-    socket.on("getRoute", function(data, callback) {
+    socket.on("getRunRoute", function(data, callback) {
         callback(vehicleRoute.getVehiclesRoute());
     });
-    socket.on("putRoute", function(data, callback) {
+    socket.on("putRunRoute", function(data, callback) {
         callback({success:false});
     });
 }

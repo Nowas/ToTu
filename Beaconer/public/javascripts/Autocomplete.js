@@ -47,9 +47,10 @@
                     });
                 }
                 if (ui.item.type == 'LINIA') {
-                    ToTuEventGenerator('FoundLine', {
+                    ToTuEventGenerator('SearchLineSelected', {
                         id : ui.item.id,
-                        description : ui.item.value
+                        displayText : ui.item.value,
+                        type: 'Vehicle'
                     });
                 }
             if ($(window).width() < 480)
