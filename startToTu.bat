@@ -1,3 +1,4 @@
+start pm2 start ./Resources/server.js --name="resources"
 start pm2 start ./Beacon/server.js --name="beacon"
 start pm2 start ./Search/server.js --name="search"
 start pm2 start ./VehicleStopInfo/server.js --name="VehicleStopInfo"
