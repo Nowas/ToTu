@@ -1,0 +1,29 @@
+{
+  "name": "resources",
+  "version": "1.0.0",
+  "description": "Beacon for vehicles in area",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Beacon",
+    "Vehicles"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "socket.io": "^1.4.5",
+    "supertest": "^1.2.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
