@@ -1,10 +1,10 @@
-var server = 'localhost';
+var server = 'http://localhost';
 
 var beacons = [
   {
-      url: server,
+      url: server + ':5001',
       latFrom: -90,
-      lngFrom: -180,
+      lngFrom: -180,    
       latTo: 90,
       LngTo: 180,
   }  

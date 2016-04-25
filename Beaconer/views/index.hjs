@@ -20,7 +20,7 @@
 
         <div class="searchField" style="display:none">
             <img class="map-menu-btn" src="/images/Material/ic_search_black_24px.svg" alt="Search">
-            <input id="searchText" type="text" data-lookup="yes" data-action='http://localhost:3003/search'/>
+            <input id="searchText" type="text" data-lookup="yes" data-action="{{searchServiceAddress}}"/>
         </div>
 
 

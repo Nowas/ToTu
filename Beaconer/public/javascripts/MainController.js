@@ -19,7 +19,7 @@ function MainController(config) {
     
     function retrieveVehicleData(id)
     {
-        retreiveDataFromServer('http://localhost:3001/vehicleRunRoute', {runId: id},function(data){
+        retreiveDataFromServer('http://localhost:5002/vehicleRunRoute', {runId: id},function(data){
             hideLoader();
             ToTuEventGenerator(
                 'DrawVehicleRoute',
@@ -64,7 +64,7 @@ function MainController(config) {
     
     function retrieveVehicleStopData(id)
     {
-        retreiveDataFromServer('http://localhost:3002/vehicleStopInfo', {stopId: id},function(data){
+        retreiveDataFromServer('http://localhost:5003/vehicleStopInfo', {stopId: id},function(data){
             $("#vehicleStopInfo h2").text(data.stopName);
             var infoDiv = $("div.departures");
             if( !data || !data.timeTable){

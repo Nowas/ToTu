@@ -17,6 +17,7 @@
   "dependencies": {
     "odbc": "^1.2.1",
     "odbc-pool": "0.0.5",
+    "request": "^2.72.0",
     "socket.io-client": "^1.4.5"
   },
   "devDependencies": {}

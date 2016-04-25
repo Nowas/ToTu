@@ -15,16 +15,15 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "mocha": "^2.4.5",
     "odbc": "^1.2.1",
     "odbc-pool": "0.0.5",
-    "socket.io": "^1.4.5",
-    "supertest": "^1.2.0"
+    "socket.io": "^1.4.5"
   },
   "directories": {
     "test": "test"
   },
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   }
 }

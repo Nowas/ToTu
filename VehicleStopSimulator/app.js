@@ -1,10 +1,10 @@
 var io = require('socket.io-client');
-var beaconerConf = require('./lib/configuration').getConfig()[0];
+var beaconerConf = require('./lib/configuration')( function(config){
 
 var db = require('odbc')()
     , cn = require('./lib/dbconf.js').connStr;
 
-var socket = io.connect(beaconerConf.url, {reconnect: true});
+var socket = io.connect(config.beacons  [0].url, {reconnect: true});
 
 socket.on('connect', function(socket) {
     ReadDataFromDB(-180,-90,180,90);
@@ -46,7 +46,7 @@ function ReadDataFromDB(fromLng, fromLat, toLng, toLat) {
         });
     });
 }
-
+});
 
 
 
