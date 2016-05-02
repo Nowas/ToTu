@@ -7,6 +7,30 @@ var pool = new Pool({
 });
 
     
+exports.getLineStops = function(id)
+{                
+    if(!id)
+        return callback([]);
+        
+    pool.open(cn, function (err, db) {
+        if (err) 
+            return console.log('e1' + err);
+            
+        db.query('SELECT PLI_ID as ID,' +
+        ' PLI_WSPX as LNG, PLI_WSPY as LAT,' +
+        ' FROM VIEW_PRZYSTANKI_LINII' +
+        ' WHERE PLI_FK_TLI_ID = ?', [id.toString()], function (err, data) {
+            
+            if (err)
+                console.log('e2' + err);
+            if(data.length == 0)
+                return callback([]); 
+            db.close();
+            callback(data);
+        });
+    });
+}
+
 exports.getVehicleRunRoute = function(id,callback) {
     if(!id)
         return callback([]);
