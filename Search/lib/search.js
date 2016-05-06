@@ -5,7 +5,6 @@ var pool = new Pool({
     , max : 100
     , log : true
 });
-
     
 exports.getSearchResult = function(searchTerm,callback) {
     if(!searchTerm)

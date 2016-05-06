@@ -7,9 +7,9 @@ var pool = new Pool({
 });
 
     
-exports.getLineStops = function(id)
+exports.getLineStops = function(lineId)
 {                
-    if(!id)
+    if(!lineId)
         return callback([]);
         
     pool.open(cn, function (err, db) {
@@ -19,7 +19,7 @@ exports.getLineStops = function(id)
         db.query('SELECT PLI_ID as ID,' +
         ' PLI_WSPX as LNG, PLI_WSPY as LAT,' +
         ' FROM VIEW_PRZYSTANKI_LINII' +
-        ' WHERE PLI_FK_TLI_ID = ?', [id.toString()], function (err, data) {
+        ' WHERE PLI_FK_TLI_ID = ?', [lineId.toString()], function (err, data) {
             
             if (err)
                 console.log('e2' + err);
