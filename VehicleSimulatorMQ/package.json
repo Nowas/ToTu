@@ -1,0 +1,23 @@
+{
+  "name": "vehiclesimulatormq",
+  "version": "1.0.0",
+  "description": "Simulator od mass transport vehicles for ToTu",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "ToTu",
+    "Vehicle",
+    "Simulator"
+  ],
+  "author": "Patryk Nowacki",
+  "license": "ISC",
+  "dependencies": {
+    "amqp": "^0.2.4",
+    "guid": "0.0.12",
+    "odbc": "^1.2.1",
+    "odbc-pool": "0.0.5"
+  }
+}
