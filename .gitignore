@@ -1,4 +1,5 @@
 */node_modules/
 *.log
+mqconf.js
 dbconf.js
 wallaby.js
