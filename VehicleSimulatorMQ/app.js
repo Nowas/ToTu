@@ -2,7 +2,7 @@ var amqp = require('amqp');
 var guid = require('guid').raw();
 
 var count = 1;
-var connection = amqp.createConnection({ url: 'amqp://fpapccau:DhwJdq_bPJKOvJVnoPWmMgPQMEzyNQ-0@spotted-monkey.rmq.cloudamqp.com:5672/fpapccau'});
+var connection = amqp.createConnection({ url: require('./lib/mqconf.js').connStr});
 connection.on('ready', function () {
   console.log('ready');
   var exchange = connection.exchange('ToTuBusPos');
